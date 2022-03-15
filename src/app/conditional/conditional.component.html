@@ -1,0 +1,50 @@
+<p>Select Options</p>
+<select [(ngModel)]="currselection">
+    <option [value]="item" *ngFor="let item of selcetionlist">
+        {{item}}
+    </option>
+</select>
+
+<p>=============== If ===============</p>
+
+<div *ngIf="currselection == 'name'" class="mt">Jeel</div>
+<div *ngIf="currselection == 'age'" class="mt">21</div>
+<div *ngIf="currselection == 'image'" class="mt">
+    <img src="../../assets/images/butterfly.jpg" />
+</div>
+<div *ngIf="currselection == 'email'" class="mt">jeel@gmail.com</div>
+<div *ngIf="currselection == 'name_age'" class="mt"></div>
+<div *ngIf="currselection == 'name_email'" class="mt"></div>
+<div *ngIf="currselection == 'Show_all'" class="mt"></div>
+
+<p>=============== Else If ============</p>
+
+<div *ngIf="currselection == 'name' else method">
+    Currently name is selected
+</div>
+
+<ng-template #method>
+    <div>This is else block</div>
+</ng-template>
+
+<p>=============== Switch =============</p>
+
+<div [ngSwitch]="currselection">
+    <p *ngSwitchCase="'name'">Jeel Jasoliya</p>
+    <p *ngSwitchCase="'age'">21</p>
+    <p *ngSwitchCase="'image'">
+        <img src="../../assets/images/butterfly.jpg" />
+    </p>
+    <p *ngSwitchCase="'email'">jeel@gmail.com</p>
+
+    <p *ngSwitchCase="'name_age'"></p>
+    <p *ngSwitchCase="'name_email'"></p>
+    <p *ngSwitchCase="'show_all'"></p>
+    <div *ngSwitchDefault>This is default</div>
+</div>
+
+<p>============Input number ==============</p>
+
+<input type="number" [(ngModel)]="selectedNumber"/>&nbsp;
+<button (click)="showValues()">Generater</button> 
+

@@ -1,0 +1,57 @@
+<!-- <label>First Name: </label>
+<input type="text" name="firstName" [(ngModel)]="firstNameInput" />
+
+<p>Entered name is {{ firstNameInput }}</p>
+
+<label>Last Name: </label>
+<input type="text" name="firstName" [(ngModel)]="lastNameInput" />
+
+<p>Entered name is {{ lastNameInput }}</p>
+
+
+<label>Select Color </label>
+<select [(ngModel)]="selectedColor">
+    <option value="">Select Colors</option>
+    <option value="yellow">Yellow</option>
+    <option value="lightblue">Blue</option>
+    <option value="lightgreen">Green</option>
+    <option value="brown">Brown</option>
+    <option value="lightpink">pink</option>
+</select>
+
+<div style="width: 50px; height: 50px;" [style.background-color]="selectedColor"></div>
+
+<div style="width: 50px; height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: getSelectedColor() }"></div>
+
+<div style="width: 50px;height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: selectedColor }"></div>
+
+<div style="width: 50px;height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: Colors }"></div>
+
+
+<label>Select Class Color </label>
+<select [(ngModel)]="selectedClassColor">
+    <option value="">Select Colors</option>
+    <option value="bg-yellow">Yellow</option>
+    <option value="bg-lightblue">Blue</option>
+    <option value="bg-lightgreen">Green</option>
+    <option value="bg-brown">Brown</option>
+</select>
+
+<input type="number" [(ngModel)]="selectedNumber" />
+<div class="w-50px" [ngClass]="selectedClassColor"></div>
+
+<div class="w-50px"
+    [ngClass]="selectedNumber == 0 ? 'bg-yellow' : selectedNumber == 1 ? 'bg-lightblue' : selectedNumber == 2 ? 'bg-lightgreen' : selectedNumber == 3 ? 'bg-brown' : ''">
+</div>
+
+<div class="w-50px"
+    [ngClass]="getClass()">
+</div>
+
+<div class="w-50px"
+    [ngClass]="getClassVar">
+</div> 
+
+<button (click)="showValues()">Show Selected Values</button> -->
+
+<app-conditional></app-conditional>
