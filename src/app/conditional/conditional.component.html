@@ -7,15 +7,21 @@
 
 <p>=============== If ===============</p>
 
-<div *ngIf="currselection == 'name'" class="mt">Jeel</div>
-<div *ngIf="currselection == 'age'" class="mt">21</div>
+<div *ngIf="currselection == 'name'" class="mt">Jeel
+</div>
+<div *ngIf="currselection == 'age'" class="mt">21
+</div>
 <div *ngIf="currselection == 'image'" class="mt">
     <img src="../../assets/images/butterfly.jpg" />
 </div>
 <div *ngIf="currselection == 'email'" class="mt">jeel@gmail.com</div>
+
+
 <div *ngIf="currselection == 'name_age'" class="mt"></div>
 <div *ngIf="currselection == 'name_email'" class="mt"></div>
-<div *ngIf="currselection == 'Show_all'" class="mt"></div>
+<div *ngIf="currselection == 'Show_all'" class="mt">
+   <p>{{select()}}</p>
+</div>
 
 <p>=============== Else If ============</p>
 
@@ -45,6 +51,5 @@
 
 <p>============Input number ==============</p>
 
-<input type="number" [(ngModel)]="selectedNumber"/>&nbsp;
-<button (click)="showValues()">Generater</button> 
-
+<input type="number" [(ngModel)]="selectedNumber" />&nbsp;
+<button (click)="showValues()">Generater</button>

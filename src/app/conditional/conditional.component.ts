@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ConditionalComponent implements OnInit {
 
   currselection: string = '';
-  selcetionlist: string[] = ['name', 'age', 'image', 'email', 'name_age', 'name_email', 'show_all'];
+  selcetionlist: string[] = ['name', 'age', 'image', 'email', 'name_age', 'name_email', 'Show_all'];
+  select(){
+    return this.selcetionlist
+  }
 
   selectedNumber: number = 0;
   showValues() {
