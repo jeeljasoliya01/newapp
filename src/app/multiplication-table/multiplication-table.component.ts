@@ -19,6 +19,7 @@ export class MultiplicationTableComponent implements OnInit {
   }
 
   generate() {
+    this.counter = [];
     for (var i = this.InputParams.from; i < this.InputParams.To; i++) {
       this.counter.push(i);
     }
