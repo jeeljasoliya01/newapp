@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConditionalComponent } from './conditional/conditional.component';
+import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConditionalComponent
+    ConditionalComponent,
+    MultiplicationTableComponent
   ],
   imports: [
     BrowserModule,
