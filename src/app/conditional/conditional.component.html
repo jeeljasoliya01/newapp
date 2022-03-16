@@ -7,21 +7,15 @@
 
 <p>=============== If ===============</p>
 
-<div *ngIf="currselection == 'name'" class="mt">Jeel
+<div *ngIf="currselection == 'name' || currselection == 'name_age' || currselection == 'name_email'|| currselection == 'Show_all'"
+    class="mt">Jeel
 </div>
-<div *ngIf="currselection == 'age'" class="mt">21
-</div>
-<div *ngIf="currselection == 'image'" class="mt">
+<div *ngIf="currselection == 'age' || currselection == 'name_age' || currselection == 'Show_all'" class="mt">21</div>
+<div *ngIf="currselection == 'image' || currselection == 'Show_all'" class="mt">
     <img src="../../assets/images/butterfly.jpg" />
 </div>
-<div *ngIf="currselection == 'email'" class="mt">jeel@gmail.com</div>
-
-
-<div *ngIf="currselection == 'name_age'" class="mt"></div>
-<div *ngIf="currselection == 'name_email'" class="mt"></div>
-<div *ngIf="currselection == 'Show_all'" class="mt">
-   <p>{{select()}}</p>
-</div>
+<div *ngIf="currselection == 'email' || currselection == 'name_email' || currselection == 'Show_all'" class="mt">
+    jeel@gmail.com</div>
 
 <p>=============== Else If ============</p>
 
@@ -42,11 +36,10 @@
         <img src="../../assets/images/butterfly.jpg" />
     </p>
     <p *ngSwitchCase="'email'">jeel@gmail.com</p>
-
     <p *ngSwitchCase="'name_age'"></p>
     <p *ngSwitchCase="'name_email'"></p>
     <p *ngSwitchCase="'show_all'"></p>
-    <div *ngSwitchDefault>This is default</div>
+    <p *ngSwitchDefault>This is default</p>
 </div>
 
 <p>============Input number ==============</p>

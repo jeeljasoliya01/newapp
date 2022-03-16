@@ -9,9 +9,6 @@ export class ConditionalComponent implements OnInit {
 
   currselection: string = '';
   selcetionlist: string[] = ['name', 'age', 'image', 'email', 'name_age', 'name_email', 'Show_all'];
-  select(){
-    return this.currselection
-  }
 
   selectedNumber: number = 0;
   showValues() {
