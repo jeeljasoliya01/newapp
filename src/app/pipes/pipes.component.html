@@ -1,0 +1,74 @@
+<div class="container mt-3 ">
+    <h4 class="text-danger">=========== Pipes ============</h4>
+    <p>{{ 'jeel jasoliya' | uppercase }}</p>
+    <p>{{ 'JEEL JASOLIYA' | lowercase }}</p>
+    <p>{{ 'JEEL JASOLIYA' | titlecase }}</p>
+    <p>{{ 3.6 | number: '1.0-0'}}</p> <!-- desimalpipes -->
+    <p>{{ dataArray | json }}</p> <!-- jsonpipes -->
+    <p>{{ 50 | percent:'4.3-5'}}</p> <!-- percentpipes -->
+
+    <!-- currencypipes -->
+    <h4 class="text-primary">---- Currency pipes ----</h4>
+    <p>{{ 20 | currency}}</p>
+    <p>{{ 20 | currency:'CAD'}}</p>
+    <p>{{ 20 | currency:'CAD':'code'}}</p>
+    <p>{{ 20 | currency:'CAD':'symbol':'4.2-2'}}</p>
+    <p>{{ 20 | currency:'CAD':'symbol-narrow':'4.2-2'}}</p>
+    <p>{{ 20 | currency:'CAD':'symbol':'4.2-2':'fr'}}</p>
+
+    <!-- Slicepipes -->
+    <h4 class="text-success">---- Slice pipes ----</h4>
+    <p>{{str | slice:0:4}}</p>
+    <p>'{{str | slice:4:0}}'</p>
+    <p>{{str | slice:-4}}</p>
+    <p>{{str | slice:-4:-2}}</p>
+    <p>{{str | slice:-100}}</p>
+    <p>'{{str | slice:100}}' </p>
+
+    <!-- Date & Time Pipes -->
+    <h4 class="text-info">---- Date pipes ----</h4>
+    <p>{{ currentDate | date}}</p>
+
+    <!-- Short -->
+    <p>{{ currentDate | date:'M/d/yy , h:mm a'}}</p>
+
+    <!-- medium -->
+    <p>{{ currentDate | date:'MMM d, y, h:mm:ss a'}}</p>
+
+    <!-- long -->
+    <p>{{ currentDate | date:'MMMM d, y, h:mm:ss a z'}}</p>
+
+    <!-- full -->
+    <p>{{ currentDate | date:'EEEE, MMMM d, y, h:mm:ss a zzzz'}}</p>
+
+
+    <p class="text-warning">---- Dates ----</p>
+    <!-- shortDate -->
+    <p>{{ currentDate | date:'M/d/yy'}}</p>
+
+    <!--  mediumDate  -->
+    <p>{{ currentDate | date:'MMM d, y'}}</p>
+
+    <!-- longDate -->
+    <p>{{ currentDate | date:'MMMM d, y'}}</p>
+
+    <!-- fullDate -->
+    <p>{{ currentDate | date:'EEEE, MMMM d, y'}}</p>
+
+
+    <p class="text-warning">---- Times ----</p>
+    <!-- shortTime -->
+    <p>{{ currentDate | date: 'h:mm a'}}</p>
+
+    <!-- mediumTime -->
+    <p>{{ currentDate | date: 'h:mm:ss a'}}</p>
+
+    <!-- longTime -->
+    <p>{{ currentDate | date: 'h:mm:ss a z'}}</p>
+
+    <!-- FullTime -->
+    <p>{{ currentDate | date: 'h:mm:ss a zzzz'}}</p>
+
+    <h4 class="text-success">---- Custom pipes ----</h4>
+    <p>{{ 10000 | shortNumber }}</p>
+</div>

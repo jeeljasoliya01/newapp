@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConditionalComponent } from './conditional/conditional.component';
 import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
+import { PipesComponent } from './pipes/pipes.component';
+import { ShortNumberPipe } from './custom/short-number.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConditionalComponent,
-    MultiplicationTableComponent
+    MultiplicationTableComponent,
+    PipesComponent,
+    ShortNumberPipe
   ],
   imports: [
     BrowserModule,
