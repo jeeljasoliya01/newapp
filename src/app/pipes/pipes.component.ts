@@ -13,6 +13,8 @@ export class PipesComponent implements OnInit {
     },
   ];
   str : string = 'jeel jasoliya';
+  // collection: string[] = ['a', 'b', 'c', 'd'];
+  // languages: string[]= ['Java','PHP', '.Net','JQuery', 'JavaScript','Angular','AngularJS']
   currentDate: Date = new Date();
   constructor() {}
 

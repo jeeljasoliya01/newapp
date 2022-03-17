@@ -15,7 +15,7 @@ import { ShortNumberPipe } from './custom/short-number.pipe';
     ConditionalComponent,
     MultiplicationTableComponent,
     PipesComponent,
-    ShortNumberPipe
+    ShortNumberPipe,
   ],
   imports: [
     BrowserModule,
