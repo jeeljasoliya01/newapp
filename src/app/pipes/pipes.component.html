@@ -80,8 +80,7 @@
         <div class="card-body">
             <div class="row">
                 <h3 class="fw-bold">Fahrenheit to Celsius </h3>
-                <p> Fahrenheit : <input type="text" [(ngModel)]="Fahrenheit" /> Celsius : {{Fahrenheit |
-                    tempConvert:'C'}} </p>
+                <p> Fahrenheit : <input type="text" [(ngModel)]="Fahrenheit" /> Celsius : {{Fahrenheit | tempConvert:'C'}} </p>
             </div>
             <div class="row">
                 <h3 class="fw-bold">Celsius to Fahrenheit </h3>
@@ -106,7 +105,17 @@
     <br>
     <!-- ngNonBindable -->
     <div ngNonBindable>This should not evaluate: {{ 1 + 1 }}, but will highlight yellow.</div>
+    <br>
 
+    <!-- color-method-directive -->
     <button [ngClass]="'blue'">Click Me</button>
 
+    <!-- test-directive -->
+
+    <div *ngIf="'isLogIn; else isLogOut'">
+        Hello you are logged in
+    </div>
+    <ng-template #isLogOut>
+        You're logged out..
+    </ng-template>
 </div>

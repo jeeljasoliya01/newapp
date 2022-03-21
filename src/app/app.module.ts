@@ -18,6 +18,7 @@ import { TrimPipe } from './custom-pipes/trim.pipe';
 import { TempConvertPipe } from './custom-pipes/temp-convert.pipe';
 import { HighlightsDirective } from './custom-directive/highlights.directive';
 import { ColorMethodDirective } from './custom-directive/color-method.directive';
+import { TestDirective } from './custom-directive/test.directive';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ColorMethodDirective } from './custom-directive/color-method.directive'
     TempConvertPipe,
     HighlightsDirective,
     ColorMethodDirective,
+    TestDirective,
   ],
   imports: [
     BrowserModule,
