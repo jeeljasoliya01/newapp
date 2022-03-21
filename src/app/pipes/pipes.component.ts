@@ -12,11 +12,20 @@ export class PipesComponent implements OnInit {
       Lname: 'jasoliya',
     },
   ];
-  str : string = 'jeel jasoliya';
-  // collection: string[] = ['a', 'b', 'c', 'd'];
-  // languages: string[]= ['Java','PHP', '.Net','JQuery', 'JavaScript','Angular','AngularJS']
-  currentDate: Date = new Date();
-  constructor() {}
+  firstName: string[] = [];
+  lastName: string[] = [];
 
-  ngOnInit(): void {}
+  str: string = 'jeel jasoliya';
+
+  currentDate: Date = new Date();
+
+  file = { name: 'photo.jpg', size: 2120109, type: 'image/jpg' };
+
+  //temp-convert
+  Fahrenheit: number = 0;
+  celcius: number = 0;
+
+  color = '';
+  constructor() { }
+  ngOnInit(): void { }
 }

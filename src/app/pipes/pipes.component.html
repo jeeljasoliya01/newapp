@@ -1,12 +1,11 @@
-
 <div class="container mt-3 ">
     <h4 class="text-danger">=========== Pipes ============</h4>
     <p>{{ 'jeel jasoliya' | uppercase }}</p>
     <p>{{ 'JEEL JASOLIYA' | lowercase }}</p>
     <p>{{ 'JEEL JASOLIYA' | titlecase }}</p>
-    <p>{{ 3.6 | number: '1.0-0'}}</p> <!-- desimalpipes -->
-    <p>{{ dataArray | json }}</p> <!-- jsonpipes -->
-    <p>{{ 50 | percent:'4.3-5'}}</p> <!-- percentpipes -->
+    <p>Desimal : {{ 3.6 | number: '1.0-0'}}</p>
+    <p>json : {{ dataArray | json }}</p>
+    <p>Percent : {{ 50 | percent:'4.3-5'}}</p>
 
     <!-- currencypipes -->
     <h4 class="text-primary">---- Currency pipes ----</h4>
@@ -29,47 +28,85 @@
     <!-- Date & Time Pipes -->
     <h4 class="text-info">---- Date pipes ----</h4>
     <p>{{ currentDate | date}}</p>
-
-    <!-- Short -->
-    <p>{{ currentDate | date:'M/d/yy , h:mm a'}}</p>
-
-    <!-- medium -->
-    <p>{{ currentDate | date:'MMM d, y, h:mm:ss a'}}</p>
-
-    <!-- long -->
-    <p>{{ currentDate | date:'MMMM d, y, h:mm:ss a z'}}</p>
-
-    <!-- full -->
-    <p>{{ currentDate | date:'EEEE, MMMM d, y, h:mm:ss a zzzz'}}</p>
+    <p>Short : {{ currentDate | date:'M/d/yy , h:mm a'}}</p>
+    <p>Medium : {{ currentDate | date:'MMM d, y, h:mm:ss a'}}</p>
+    <p>Long : {{ currentDate | date:'MMMM d, y, h:mm:ss a z'}}</p>
+    <p>full : {{ currentDate | date:'EEEE, MMMM d, y, h:mm:ss a zzzz'}}</p>
 
 
     <p class="text-warning">---- Dates ----</p>
-    <!-- shortDate -->
-    <p>{{ currentDate | date:'M/d/yy'}}</p>
-
-    <!--  mediumDate  -->
-    <p>{{ currentDate | date:'MMM d, y'}}</p>
-
-    <!-- longDate -->
-    <p>{{ currentDate | date:'MMMM d, y'}}</p>
-
-    <!-- fullDate -->
-    <p>{{ currentDate | date:'EEEE, MMMM d, y'}}</p>
-
+    <p>ShortDate : {{ currentDate | date:'M/d/yy'}}</p>
+    <p>MediumDate : {{ currentDate | date:'MMM d, y'}}</p>
+    <p>longDate : {{ currentDate | date:'MMMM d, y'}}</p>
+    <p>FullDate : {{ currentDate | date:'EEEE, MMMM d, y'}}</p>
 
     <p class="text-warning">---- Times ----</p>
-    <!-- shortTime -->
-    <p>{{ currentDate | date: 'h:mm a'}}</p>
+    <p>ShortTime : {{ currentDate | date: 'h:mm a'}}</p>
+    <p>MediumTime : {{ currentDate | date: 'h:mm:ss a'}}</p>
+    <p>longTime : {{ currentDate | date: 'h:mm:ss a z'}}</p>
+    <p>FullTime : {{ currentDate | date: 'h:mm:ss a zzzz'}}</p>
 
-    <!-- mediumTime -->
-    <p>{{ currentDate | date: 'h:mm:ss a'}}</p>
-
-    <!-- longTime -->
-    <p>{{ currentDate | date: 'h:mm:ss a z'}}</p>
-
-    <!-- FullTime -->
-    <p>{{ currentDate | date: 'h:mm:ss a zzzz'}}</p>
-
+    <!-- custom pipes -->
     <h4 class="text-success">---- Custom pipes ----</h4>
-    <p>{{ 10000 | shortNumber }}</p>
+
+    <p appHighlights>short Number : {{10000 | shortNumber }}</p>
+
+    <p>File size : {{file.size | fileSize}}</p>
+
+    <p appHighlights>File name : {{file.name}}</p>
+
+    <p>UserFullName : {{firstName | userFullName: "Jeel" : "Jasoliya"}}</p>
+
+    <p appHighlights>Square : {{5|squreroot}}</p>
+
+    <p>Power : {{10 | power:2}}</p>
+
+    <p appHighlights>Multiplier : {{2|multiplier:'10'}}</p>
+
+    <p>{{str | trim}}!</p>
+
+    <h6 class="text-primary">** GigaByte To MegaByte **</h6>
+    <p>5 GB : {{5 | gigabyteToMegabyte }} MB.</p>
+    <p>10 GB : {{10 | gigabyteToMegabyte }} MB.</p>
+    <p>15 GB : {{15 | gigabyteToMegabyte }} MB.</p>
+    <p>20 GB : {{20 | gigabyteToMegabyte }} MB.</p>
+
+
+    <h6 class="text-primary">** Temp-Convert **</h6><br>
+    <div class='card col-5'>
+        <div class='card-header'>
+            <p class="fw-bolder">{{'TempConverter'}} </p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <h3 class="fw-bold">Fahrenheit to Celsius </h3>
+                <p> Fahrenheit : <input type="text" [(ngModel)]="Fahrenheit" /> Celsius : {{Fahrenheit |
+                    tempConvert:'C'}} </p>
+            </div>
+            <div class="row">
+                <h3 class="fw-bold">Celsius to Fahrenheit </h3>
+                <p> Celsius : <input type="text" [(ngModel)]="celcius" /> Fahrenheit : {{celcius | tempConvert:'F'}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- custom-directive -->
+    <h3 class="text-danger">My First Attribute Directive</h3>
+    <div class='border col-4'>
+        <h4 class="m-3">: Highlight color :</h4>
+        <div>
+            <input class="form-check-input" type="radio" name="colors" (click)="color='skyblue'"> Blue <br>
+            <input class="form-check-input" type="radio" name="colors" (click)="color='#cc6699'"> Rose <br>
+            <input class="form-check-input mb-3" type="radio" name="colors" (click)="color='#cc6666'"> Orange <br>
+        </div>
+        <p appHighlights [appHighlight]="color" class="fw-bold">Jeel Jasoliya..........!</p>
+    </div>
+    <br>
+    <!-- ngNonBindable -->
+    <div ngNonBindable>This should not evaluate: {{ 1 + 1 }}, but will highlight yellow.</div>
+
+    <button [ngClass]="'blue'">Click Me</button>
+
 </div>

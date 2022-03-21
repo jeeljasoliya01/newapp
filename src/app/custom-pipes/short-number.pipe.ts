@@ -1,9 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'shortNumber',
+  name: 'shortNumber'
 })
 export class ShortNumberPipe implements PipeTransform {
+
   transform(number: number, args?: any): any {
     if (isNaN(number)) return null; // will only work value is a number
     if (number === null) return null;
@@ -17,7 +18,7 @@ export class ShortNumberPipe implements PipeTransform {
       { key: 'T', value: Math.pow(10, 12) },
       { key: 'B', value: Math.pow(10, 9) },
       { key: 'M', value: Math.pow(10, 6) },
-      { key: 'K', value: 1000 },
+      { key: 'K', value: 1000 }
     ];
     for (let i = 0; i < powers.length; i++) {
       let reduced = abs / powers[i].value;
@@ -29,5 +30,6 @@ export class ShortNumberPipe implements PipeTransform {
       }
     }
     return (isNegative ? '-' : '') + abs + key;
-  }
+ }
+
 }
