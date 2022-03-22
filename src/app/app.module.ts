@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,8 @@ import { TempConvertPipe } from './custom-pipes/temp-convert.pipe';
 import { HighlightsDirective } from './custom-directive/highlights.directive';
 import { ColorMethodDirective } from './custom-directive/color-method.directive';
 import { TestDirective } from './custom-directive/test.directive';
-
+import { ToogleDirective } from './custom-directive/toogle.directive';
+import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +40,14 @@ import { TestDirective } from './custom-directive/test.directive';
     HighlightsDirective,
     ColorMethodDirective,
     TestDirective,
+    ToogleDirective,
+    FormsReactiveComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
-
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

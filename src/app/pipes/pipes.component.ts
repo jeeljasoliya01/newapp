@@ -24,7 +24,6 @@ export class PipesComponent implements OnInit {
   //temp-convert
   Fahrenheit: number = 0;
   celcius: number = 0;
-
   color = '';
   constructor() { }
   ngOnInit(): void { }

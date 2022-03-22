@@ -6,30 +6,30 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 export class HighlightsDirective {
   @Input() appHighlight = '';
 
-  //   constructor(private el: ElementRef) {
-  //     this.el.nativeElement.style.backgroundColor = 'lightblue';
-  //  }
+    constructor(public el: ElementRef) {
+      this.el.nativeElement.style.backgroundColor = 'lightblue';
+   }
 
   //===============mouse over and out==============
   // constructor(private el: ElementRef) { }
 
-  // @HostListener('mouseenter') onMouseEnter() {
-  //   this.highlight('lightpink');
-  // }
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight('lightpink');
+  }
 
-  // @HostListener('mouseleave') onMouseLeave() {
-  //   this.highlight('');
-  // }
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight('');
+  }
 
+  public highlight(color: string) {
+    this.el.nativeElement.style.backgroundColor = color;
+  }
+
+  // constructor(private el: ElementRef) { }
   // private highlight(color: string) {
   //   this.el.nativeElement.style.backgroundColor = color;
   // }
-
-  constructor(private el: ElementRef) { }
-  private highlight(color: string) {
-    this.el.nativeElement.style.backgroundColor = color;
-  }
-  @HostListener('mouseenter') onMouseEnter() {
-    this.highlight(this.appHighlight);
-  }
+  // @HostListener('mouseenter') onMouseEnter() {
+  //   this.highlight(this.appHighlight);
+  // }
 }
