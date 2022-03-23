@@ -10,15 +10,22 @@ export class FormsReactiveComponent implements OnInit {
   userForm: FormGroup;
   constructor(private fb: FormBuilder) {
     this.userForm = this.fb.group({
-      firstname: ['',[Validators.required]],
-      lastname: ['',[Validators.required]],
-      email:['',[Validators.required]],
-     phone: ['', [Validators.maxLength(10)]],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      email: ['', [Validators.required,
+                  Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"),
+                  Validators.email]],
+      phone: ['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      password:['',[Validators.required,Validators.minLength(8)]],
+      cpassword:['',[Validators.required,Validators.minLength(10)]]
 
     })
   }
 
   ngOnInit(): void {
+  }
+  submitData(){
+    debugger
   }
 
 }

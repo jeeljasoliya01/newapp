@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <h3 class="text-center mb-2">Form-Reactive</h3>
-    <form [formGroup]="userForm">
+    <form [formGroup]="userForm" (ngSubmit)="submitData()">
         <div class="row">
             <div class="form-group mb-3 col-6">
                 <label class="ms-2">First Name:</label>
@@ -29,33 +29,43 @@
                     class="text-danger">
                     E-mail is required
                 </label>
-                <!-- <label *ngIf="userForm.errors?.pattern" class="text-danger">Please provide a valid email
-                    address</label> -->
+                <label *ngIf="userForm.get('email') && userForm.get('email')?.errors?.['pattern']" class="text-danger">
+                    E-mail is invalid
+                </label>
             </div>
         </div>
         <div class="row">
             <div class="form-group mb-3 col-6">
                 <label class="ms-2">Password</label>
-                <input type="Password" class="form-control">
+                <input type="Password" minlength="8" name="password" formControlName="password" class="form-control">
+                <label *ngIf="userForm.get('password') && userForm.get('password')?.touched && !userForm.get('password')?.value"
+                    class="text-danger">
+                    Password is required
+                </label>
+                
             </div>
             <div class="form-group mb-3 col-6">
                 <label class="ms-2">Confirm Password</label>
-                <input type="Password" class="form-control">
+                <input type="Password" minlength="10" name="cpassword" formControlName="cpassword" class="form-control">
+                <label *ngIf="userForm.get('cpassword') && userForm.get('cpassword')?.touched && !userForm.get('cpassword')?.value"
+                    class="text-danger">
+                    Confirm Password is required
+                </label>
             </div>
         </div>
         <div class="form-group">
             <label>Phone</label>
-            <input type="tel" maxlength="11" name="phone" required formControlName="phone" class="form-control" />
+            <input type="tel" name="phone" required formControlName="phone" class="form-control" />
             <label *ngIf="userForm.get('phone') && userForm.get('phone')?.touched && !userForm.get('phone')?.value"
                 class="text-danger">
                 Phone is required
             </label>
-            <label class="text-danger" *ngIf="userForm.get('phone')?.errors?.['maxlength']">
+            <label class="text-danger" *ngIf="userForm.get('phone')?.errors?.['pattern']">
                 {{ userForm.get('phone')?.errors | json}}
             </label>
         </div>
         <br>
-        <div class="row">
+        <!-- <div class="row">
             <div class="form-group">
                 <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                     <option selected disabled>Open this select menu</option>
@@ -69,9 +79,9 @@
             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                 style="height: 100px"></textarea>
             <label for="floatingTextarea2">Comments</label>
-        </div>
+        </div> -->
         <div class="form-group text-center mt-2">
-            <button type="button" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+            <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
         </div>
     </form>
 </div>

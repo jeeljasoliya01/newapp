@@ -21,6 +21,7 @@ import { ColorMethodDirective } from './custom-directive/color-method.directive'
 import { TestDirective } from './custom-directive/test.directive';
 import { ToogleDirective } from './custom-directive/toogle.directive';
 import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
+import { FormsTemplateComponent } from './forms-template/forms-template.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FormsReactiveComponent } from './forms-reactive/forms-reactive.componen
     TestDirective,
     ToogleDirective,
     FormsReactiveComponent,
+    FormsTemplateComponent,
   ],
   imports: [
     BrowserModule,
