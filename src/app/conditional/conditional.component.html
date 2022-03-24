@@ -1,48 +1,103 @@
-<p>Select Options</p>
-<select [(ngModel)]="currselection">
-    <option [value]="item" *ngFor="let item of selcetionlist">
-        {{item}}
-    </option>
-</select>
+<p class="text-center">Select Options</p>
+<div class="container-fluid">
+    <select [(ngModel)]="currselection">
+        <option [value]="item" *ngFor="let item of selcetionlist">
+            {{item}}
+        </option>
+    </select>
 
-<p>=============== If ===============</p>
+    <p>=============== If ===============</p>
 
-<div *ngIf="currselection == 'name' || currselection == 'name_age' || currselection == 'name_email'|| currselection == 'Show_all'"
-    class="mt">Jeel
-</div>
-<div *ngIf="currselection == 'age' || currselection == 'name_age' || currselection == 'Show_all'" class="mt">21</div>
-<div *ngIf="currselection == 'image' || currselection == 'Show_all'" class="mt">
-    <img src="../../assets/images/butterfly.jpg" />
-</div>
-<div *ngIf="currselection == 'email' || currselection == 'name_email' || currselection == 'Show_all'" class="mt">
-    jeel@gmail.com</div>
-
-<p>=============== Else If ============</p>
-
-<div *ngIf="currselection == 'name' else method">
-    Currently name is selected
-</div>
-
-<ng-template #method>
-    <div>This is else block</div>
-</ng-template>
-
-<p>=============== Switch =============</p>
-
-<div [ngSwitch]="currselection">
-    <p *ngSwitchCase="'name'">Jeel Jasoliya</p>
-    <p *ngSwitchCase="'age'">21</p>
-    <p *ngSwitchCase="'image'">
+    <div *ngIf="currselection == 'name' || currselection == 'name_age' || currselection == 'name_email'|| currselection == 'Show_all'"
+        class="mt">Jeel
+    </div>
+    <div *ngIf="currselection == 'age' || currselection == 'name_age' || currselection == 'Show_all'" class="mt">21
+    </div>
+    <div *ngIf="currselection == 'image' || currselection == 'Show_all'" class="mt">
         <img src="../../assets/images/butterfly.jpg" />
+    </div>
+    <div *ngIf="currselection == 'email' || currselection == 'name_email' || currselection == 'Show_all'" class="mt">
+        jeel@gmail.com</div>
+
+
+
+    <!-- example -->
+    <p class="text-info">----------NgIf-example-----------</p>
+
+    <div>
+        show <input type="checkbox" [(ngModel)]="showme" />
+    </div>
+    <h5>ngIf</h5>
+    <p *ngIf="showme">show me is checked</p>
+    <p *ngIf="!showme">show me is unchecked</p>
+
+    <h5>ngelse</h5>
+    <p *ngIf="showme;else elseblock1">show me is checked</p>
+    <ng-template #elseblock1>show me is unchecked using elseblock</ng-template>
+
+    <h5>ng then else</h5>
+    <p *ngIf="showme; then thenblock1; else elseblock2">This is Renderd</p>
+    <ng-template #thenblock1>show me is checked using thenblock</ng-template>
+    <ng-template #elseblock2>show me is unchecked using elseblock</ng-template>
+
+    <br><br>
+    <h5>using hidden</h5>
+    <p [hidden]="showme">
+        content is render,when the condition is true using hidden property binding
     </p>
-    <p *ngSwitchCase="'email'">jeel@gmail.com</p>
-    <p *ngSwitchCase="'name_age'"></p>
-    <p *ngSwitchCase="'name_email'"></p>
-    <p *ngSwitchCase="'show_all'"></p>
-    <p *ngSwitchDefault>This is default</p>
+    <p [hidden]="!showme">
+        content is render,when the condition is false using hidden property binding
+    </p>
+
+
+    <p class="text-danger">-------User login------</p>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-2">
+                <label>Username:</label>
+                <input type="text" [(ngModel)]="isLoggin" class="form-control">
+                <label>Password:</label>
+                <input type="password" [(ngModel)]="isPassword" class="form-control">
+                <p *ngIf="isLoggin && isPassword" class="text-success">
+                    Login Done !
+                </p>
+                <p *ngIf="!isLoggin && !isPassword" class="text-danger">
+                    Please Done !
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <p>=============== Else If ============</p>
+
+    <div *ngIf="currselection == 'name' else method">
+        Currently name is selected
+    </div>
+
+    <ng-template #method>
+        <div>This is else block</div>
+    </ng-template>
+
+    <p>=============== Switch =============</p>
+
+    <div [ngSwitch]="currselection">
+        <p *ngSwitchCase="'name'">Jeel Jasoliya</p>
+        <p *ngSwitchCase="'age'">21</p>
+        <p *ngSwitchCase="'image'">
+            <img src="../../assets/images/butterfly.jpg" />
+        </p>
+        <p *ngSwitchCase="'email'">jeel@gmail.com</p>
+        <p *ngSwitchCase="'name_age'"></p>
+        <p *ngSwitchCase="'name_email'"></p>
+        <p *ngSwitchCase="'show_all'"></p>
+        <p *ngSwitchDefault>This is default</p>
+    </div>
+
+    <p>============Input number ==============</p>
+
+    <input type="number" [(ngModel)]="selectedNumber" id="number" name="number" />&nbsp;
+    <button (click)="showValues()">Generater</button>
 </div>
-
-<p>============Input number ==============</p>
-
-<input type="number" [(ngModel)]="selectedNumber" id="number" name="number" />&nbsp;
-<button (click)="showValues()">Generater</button>
