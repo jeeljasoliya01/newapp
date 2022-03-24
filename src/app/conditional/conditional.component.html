@@ -1,25 +1,16 @@
 <p class="text-center">Select Options</p>
 <div class="container-fluid">
-    <select [(ngModel)]="currselection">
-        <option [value]="item" *ngFor="let item of selcetionlist">
-            {{item}}
-        </option>
-    </select>
+    <!-- example -->
+    <p class="text-danger">--------Ngfor example----------</p>
+    <ul *ngIf="isvisible">
+        <li *ngFor="let item of userlist">
+            {{item.name}} is {{item.age}} years old
+        </li>
+    </ul>
+    <button class="btn btn-danger" (click)="hidelist()">Hide</button>&nbsp;
+    <button class="btn btn-secondary" (click)="showlist()">Show</button>
 
-    <p>=============== If ===============</p>
-
-    <div *ngIf="currselection == 'name' || currselection == 'name_age' || currselection == 'name_email'|| currselection == 'Show_all'"
-        class="mt">Jeel
-    </div>
-    <div *ngIf="currselection == 'age' || currselection == 'name_age' || currselection == 'Show_all'" class="mt">21
-    </div>
-    <div *ngIf="currselection == 'image' || currselection == 'Show_all'" class="mt">
-        <img src="../../assets/images/butterfly.jpg" />
-    </div>
-    <div *ngIf="currselection == 'email' || currselection == 'name_email' || currselection == 'Show_all'" class="mt">
-        jeel@gmail.com</div>
-
-
+    <br><br>
 
     <!-- example -->
     <p class="text-info">----------NgIf-example-----------</p>
@@ -70,6 +61,28 @@
     </div>
     <br>
 
+    <select [(ngModel)]="currselection">
+        <option [value]="item" *ngFor="let item of selcetionlist">
+            {{item}}
+        </option>
+    </select>
+    <br><br>
+
+
+    <p>=============== If ===============</p>
+
+    <div *ngIf="currselection == 'name' || currselection == 'name_age' || currselection == 'name_email'|| currselection == 'Show_all'"
+        class="mt">Jeel
+    </div>
+    <div *ngIf="currselection == 'age' || currselection == 'name_age' || currselection == 'Show_all'" class="mt">21
+    </div>
+    <div *ngIf="currselection == 'image' || currselection == 'Show_all'" class="mt">
+        <img src="../../assets/images/butterfly.jpg" />
+    </div>
+    <div *ngIf="currselection == 'email' || currselection == 'name_email' || currselection == 'Show_all'" class="mt">
+        jeel@gmail.com</div>
+
+
 
     <p>=============== Else If ============</p>
 
@@ -80,6 +93,8 @@
     <ng-template #method>
         <div>This is else block</div>
     </ng-template>
+
+
 
     <p>=============== Switch =============</p>
 
@@ -96,6 +111,8 @@
         <p *ngSwitchDefault>This is default</p>
     </div>
 
+
+    
     <p>============Input number ==============</p>
 
     <input type="number" [(ngModel)]="selectedNumber" id="number" name="number" />&nbsp;
