@@ -39,16 +39,11 @@
                     </div>
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">Password</label>
-                        <input type="Password" name="password" formControlName="password" class="form-control">
+                        <input type="Password" name="password" maxlength="8" formControlName="password" class="form-control">
                         <label
                             *ngIf="userForm.get('password') && userForm.get('password')?.touched && !userForm.get('password')?.value"
                             class="text-danger">
                             Password is required
-                        </label>
-                        <label *ngIf="userForm.get('password') && userForm.get('password')?.errors?.['pattern']"
-                            class="text-danger">
-                            {{ userForm.get('password')?.errors | json}}
-                            Password is invalid
                         </label>
                     </div>
                 </div>
@@ -134,7 +129,7 @@
                     <td>{{ item.gender }}</td>
                     <td>{{ item.hobbies }}</td>
                     <td>
-                        <button class="btn btn-success me-2" (click)="getById(item.id)">Edit</button>
+                        <button class="btn btn-success me-2"(click)="getById(item.id)">Edit</button>
                         <button class="btn btn-danger me-2" (click)="deleteUser(item)">Delete</button>
                     </td>
                 </tr>

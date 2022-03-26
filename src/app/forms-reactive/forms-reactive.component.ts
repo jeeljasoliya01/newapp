@@ -4,34 +4,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-forms-reactive',
   templateUrl: './forms-reactive.component.html',
-  styleUrls: ['./forms-reactive.component.css']
+  styleUrls: ['./forms-reactive.component.css'],
 })
 export class FormsReactiveComponent implements OnInit {
   userForm: FormGroup;
   userData: IUser[] = [];
   selectedHobbies: string[] = [];
   userHobbies: string[] = ['cricket', 'footboll', 'reading', 'travaling'];
+
   constructor(private fb: FormBuilder) {
     this.userForm = this.fb.group({
-
       id: [''],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      email: ['', [Validators.required,
-      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"),
-      Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      email: ['', [Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),Validators.email,]],
+      phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       Age: ['', Validators.required],
-      password: ['', [Validators.required, Validators.pattern("((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8})")]],
+      password: ['', [Validators.required,Validators.maxLength(8)]],
       gender: [''],
-
-    })
+    });
   }
 
   ngOnInit(): void {
-    this.selectedHobbies = ['travaling']
+    this.selectedHobbies = ['travaling'];
   }
   submitData() {
+    console.log(this.userData);
     if (!this.userForm.valid) {
       return;
     }
@@ -44,8 +42,8 @@ export class FormsReactiveComponent implements OnInit {
     } else {
       const isExist = this.userData.find((x) => x.id == this.userForm.value.id);
       if (isExist) {
-        isExist.firstname = this.userForm.value.firstName;
-        isExist.lastname = this.userForm.value.lastName;
+        isExist.firstname = this.userForm.value.firstname;
+        isExist.lastname = this.userForm.value.lastname;
         isExist.email = this.userForm.value.email;
         isExist.password = this.userForm.value.password;
         isExist.Age = this.userForm.value.Age;
@@ -56,7 +54,10 @@ export class FormsReactiveComponent implements OnInit {
         alert('Data not found');
       }
     }
+    this.userForm.reset();
+    this.selectedHobbies = [];
   }
+
   hobbyselected($event: any) {
     if (this.selectedHobbies.find((x) => x == $event.target.value)) {
       this.selectedHobbies = this.selectedHobbies.filter(
@@ -66,35 +67,38 @@ export class FormsReactiveComponent implements OnInit {
       this.selectedHobbies.push($event.target.value);
     }
   }
-}
-getById(id: number){
-  const isExist = this.userData.find((x) => x.id == id);
-  if (isExist) {
-    this.userForm.setvalue({
-      id: isExist.id,
-      firstName: isExist.firstName,
-      lastName: isExist.lastName,
-      email: isExist.email,
-      password: isExist.password,
-      Age: isExist.Age,
-      phone: isExist.phone,
-      gender: isExist.gender,
-    });
-    this.seletedHobbies = isExist.hobbies.split(',');
+
+  deleteUser(user: IUser) {
+    if (confirm('Are you sure you want to delete ?')) {
+      this.userData = this.userData.filter((x) => x.id != user.id);
+    }
+  }
+
+  getById(id: number) {
+    const isExist = this.userData.find((x) => x.id == id);
+    if (isExist) {
+      this.userForm.patchValue({
+        id: isExist.id,
+        firstname: isExist.firstname,
+        lastname: isExist.lastname,
+        phone: isExist.phone,
+        email: isExist.email,
+        password: isExist.password,
+        Age: isExist.Age,
+        gender: isExist.gender,
+      });
+      this.selectedHobbies = isExist.hobbies.split(',');
+    }
   }
 }
-deleteUser(user: IUser){
-  if (confirm('Are you sure you want to delete ?')) {
-    this.userData = this.userData.filter((x) => x.id != user.id);
-  }
-}
+
 interface IUser {
   id: number;
   firstname: string;
   lastname: string;
   email: string;
   password: string;
-  Age: string;
+  Age: number;
   phone: string;
   gender: string;
   hobbies: string;
