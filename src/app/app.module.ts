@@ -22,6 +22,7 @@ import { TestDirective } from './custom-directive/test.directive';
 import { ToogleDirective } from './custom-directive/toogle.directive';
 import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { FormsTemplateComponent } from './forms-template/forms-template.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
