@@ -85,8 +85,7 @@
                     <p class="fw-bold">Hobbies :</p>
                     <div class="form-group">
                         <label *ngFor="let item of userHobbies">
-                            <input type="checkbox" (change)="hobbyselected($event)" #hobbies="ngModel" ngModel
-                                [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item"/>
+                            <input type="checkbox" (change)="hobbyselected($event)" #hobbies="ngModel" ngModel [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item" />
                             {{ item }}&nbsp;&nbsp;
                         </label>
                     </div>
@@ -101,4 +100,36 @@
             <p>Selected hobbies: {{ selectedHobbies | json }}</p> -->
         </div>
     </div>
+    <!-- <div class="table-reasponsive mt-4">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Age</th>
+                    <th>Phone No</th>
+                    <th>Gender</th>
+                    <th>Hobbies</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userData">
+                    <td>{{ item.firstname }}</td>
+                    <td>{{ item.lastname }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.password }}</td>
+                    <td>{{ item.Age }}</td>
+                    <td>{{ item.phone }}</td>
+                    <td>{{ item.gender }}</td>
+                    <td>{{ item.hobbies }}</td>
+                    <td>
+                        <button class="btn btn-success me-2" (click)="getById(item.id)">Edit</button>
+                        <button class="btn btn-danger me-2" (click)="deleteUser(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
 </div>
