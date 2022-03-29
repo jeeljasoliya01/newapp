@@ -25,6 +25,7 @@ import { FormsTemplateComponent } from './forms-template/forms-template.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ApiCrudStudentComponent } from './api-crud-student/api-crud-student.component';
 import { ApiCrudProductComponent } from './api-crud-product/api-crud-product.component';
+import { ApiCrudUserComponent } from './api-crud-user/api-crud-user.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ApiCrudProductComponent } from './api-crud-product/api-crud-product.com
     FormsTemplateComponent,
     ApiCrudStudentComponent,
     ApiCrudProductComponent,
+    ApiCrudUserComponent,
   ],
   imports: [
     BrowserModule,

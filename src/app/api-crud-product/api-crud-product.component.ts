@@ -1,105 +1,153 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-api-crud-product',
   templateUrl: './api-crud-product.component.html',
-  styleUrls: ['./api-crud-product.component.css']
+  styleUrls: ['./api-crud-product.component.css'],
 })
 export class ApiCrudProductComponent implements OnInit {
-  userForm: FormGroup;
+  userForm:FormGroup;
   userData: IUser[] = [];
-  selectedHobbies: string[] = [];
-  userHobbies: string[] = ['cricket', 'footboll', 'reading', 'travaling'];
-
-  constructor(private fb: FormBuilder) {
+  category: any = ['Boys', 'Girls'];
+  clothSize: any = ['S', 'M', 'L', 'XL', 'XXL'];
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.userForm = this.fb.group({
       id: [''],
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      email: ['', [Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-      Age: ['', Validators.required],
-      password: ['', [Validators.required,Validators.maxLength(8)]],
-      gender: [''],
-    });
+      category: [''],
+      productname: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      Price: ['', [Validators.required]],
+      clothSize: [''],
+      inStock: [''],
+
+    })
+  }
+  get Category() {
+    return this.userForm.get('category');
+  }
+  changecategory($event: any) {
+    this.category.setValue($event.target.value, {
+      onlySelf: true
+    })
+  }
+  get Size() {
+    return this.userForm.get('sizes');
+  }
+  changeSize($event: any) {
+    this.clothSize.setValue($event.target.value, {
+      onlySelf: true
+    })
+  }
+  getProductData() {
+    this.http
+      .get(`${environment.apiEndPoint}/product/get`)
+      .subscribe((res: any) => {
+        if (res.isSuccess) {
+          this.userData = res.data;
+          this.userData.forEach((x: any) => {
+            x.id = x._id;
+          });
+        } else {
+          alert(res.message);
+        }
+      });
   }
 
   ngOnInit(): void {
-    this.selectedHobbies = ['travaling'];
+    this.getProductData();
   }
+
   submitData() {
     console.log(this.userData);
     if (!this.userForm.valid) {
       return;
     }
     if (!this.userForm.value.id) {
-      this.userData.push({
+      const payload = {
         ...this.userForm.value,
-        id: this.userData.length + 1,
-        hobbies: this.selectedHobbies.join(','),
-      });
-    } else {
+      };
+      this.http
+        .post(`${environment.apiEndPoint}/product/add`, payload)
+        .subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.getProductData();
+          } else {
+            alert(res.message);
+          }
+        });
+    }
+    else {
       const isExist = this.userData.find((x) => x.id == this.userForm.value.id);
       if (isExist) {
-        isExist.firstname = this.userForm.value.firstname;
-        isExist.lastname = this.userForm.value.lastname;
-        isExist.email = this.userForm.value.email;
-        isExist.password = this.userForm.value.password;
-        isExist.Age = this.userForm.value.Age;
-        isExist.phone = this.userForm.value.phone;
-        isExist.gender = this.userForm.value.gender;
-        isExist.hobbies = this.selectedHobbies.join(',');
+        isExist.category = this.userForm.value.category;
+        isExist.productname = this.userForm.value.productname;
+        isExist.description = this.userForm.value.description;
+        isExist.Price = this.userForm.value.Price;
+        isExist.clothSize = this.userForm.value.clothSize;
+        isExist.inStock = this.userForm.value.inStock;
+        this.http
+          .post(`${environment.apiEndPoint}/product/update`, isExist)
+          .subscribe((res: any) => {
+            if (res.isSuccess) {
+              this.getProductData();
+            } else {
+              alert(res.message);
+            }
+          })
       } else {
-        alert('Data not found');
+        alert('Data not Found');
       }
     }
     this.userForm.reset();
-    this.selectedHobbies = [];
   }
 
-  hobbyselected($event: any) {
-    if (this.selectedHobbies.find((x) => x == $event.target.value)) {
-      this.selectedHobbies = this.selectedHobbies.filter(
-        (x) => x != $event.target.value
-      );
-    } else {
-      this.selectedHobbies.push($event.target.value);
-    }
-  }
 
   deleteUser(user: IUser) {
-    if (confirm('Are you sure you want to delete ?')) {
-      this.userData = this.userData.filter((x) => x.id != user.id);
+    if (confirm('Are you sure you want to delete  ?')) {
+      this.http
+        .delete(`${environment.apiEndPoint}/product/delete?id=${user.id}`)
+        .subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.getProductData();
+          } else {
+            alert(res.message);
+          }
+        })
     }
   }
-
   getById(id: number) {
-    const isExist = this.userData.find((x) => x.id == id);
-    if (isExist) {
-      this.userForm.patchValue({
-        id: isExist.id,
-        firstname: isExist.firstname,
-        lastname: isExist.lastname,
-        phone: isExist.phone,
-        email: isExist.email,
-        password: isExist.password,
-        Age: isExist.Age,
-        gender: isExist.gender,
+    this.http
+      .get(`${environment.apiEndPoint}/product/get-product-by-id?id=${id}`)
+      .subscribe((res: any) => {
+        if (res.isSuccess) {
+          const isExist = res.data;
+          if (isExist) {
+            this.userForm.patchValue({
+              id: isExist._id,
+              category: isExist.category,
+              productname: isExist.productname,
+              description: isExist.description,
+              Price: isExist.Price,
+              clothSize: isExist.clothSize,
+              inStock: isExist.inStock,
+            });
+          }
+        }
+         else {
+          alert(res.message);
+        }
       });
-      this.selectedHobbies = isExist.hobbies.split(',');
-    }
   }
 }
-
 interface IUser {
   id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  Age: number;
-  phone: string;
-  gender: string;
-  hobbies: string;
+  category: string;
+  productname: string;
+  description: string;
+  Price: number;
+  clothSize: string;
+  inStock: string;
 }
-

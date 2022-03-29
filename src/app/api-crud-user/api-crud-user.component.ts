@@ -4,14 +4,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-api-crud-student',
-  templateUrl: './api-crud-student.component.html',
-  styleUrls: ['./api-crud-student.component.css'],
+  selector: 'app-api-crud-user',
+  templateUrl: './api-crud-user.component.html',
+  styleUrls: ['./api-crud-user.component.css']
 })
-export class ApiCrudStudentComponent implements OnInit {
+export class ApiCrudUserComponent implements OnInit {
   userForm: FormGroup;
   userData: IUser[] = [];
+
   city: any = ['','Surat', 'Bhavnagar', 'Rajkot' , 'Vadodara' , 'Ahmedabad','Mumbai'];
+
+  imageBase: string = ''; //image
+  choosenImage: any = null; //image
+  
   selectedHobbies: string[] = [];
   userHobbies: string[] = [
     'cricket',
@@ -28,7 +33,7 @@ export class ApiCrudStudentComponent implements OnInit {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       age: ['', Validators.required],
-      city: ['', [Validators.required]],
+      city: ['', Validators.required],
       gender: [''],
     });
   }
@@ -40,13 +45,15 @@ export class ApiCrudStudentComponent implements OnInit {
       onlySelf: true,
     });
   }
-
-  getStudentData() {
+  
+  getUserData() {
     this.http
-      .get(`${environment.apiEndPoint}/student/get`)
+      .get(`${environment.apiEndPoint}/user/get`)
       .subscribe((res: any) => {
         if (res.isSuccess) {
           this.userData = res.data;
+          this.imageBase = '';//image
+          this.choosenImage = null;//image
           this.userData.forEach((x: any) => {
             x.id = x._id;
           });
@@ -57,8 +64,7 @@ export class ApiCrudStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.selectedHobbies = ['travaling'];
-    this.getStudentData();
+    this.getUserData();
   }
 
   submitData() {
@@ -71,17 +77,22 @@ export class ApiCrudStudentComponent implements OnInit {
         ...this.userForm.value,
         hobbies: this.selectedHobbies.join(','),
       };
+      if (this.choosenImage) {
+        payload.userImage = this.choosenImage;
+      }
+      const formData = new FormData();
+      Object.keys(payload).map((x) => formData.append(x, payload[x]));
       this.http
-        .post(`${environment.apiEndPoint}/student/add`, payload)
+        .post(`${environment.apiEndPoint}/user/add`, formData)
         .subscribe((res: any) => {
           if (res.isSuccess) {
-            this.getStudentData();
+            this.getUserData();
           } else {
             alert(res.message);
           }
         });
     } else {
-      const isExist = this.userData.find((x) => x.id == this.userForm.value.id);
+      const isExist = this.userData.find((x) => x.id == this.userForm.value.id)as any;
       if (isExist) {
         isExist.firstName = this.userForm.value.firstName;
         isExist.lastName = this.userForm.value.lastName;
@@ -89,11 +100,16 @@ export class ApiCrudStudentComponent implements OnInit {
         isExist.city = this.userForm.value.city;
         isExist.gender = this.userForm.value.gender;
         isExist.hobbies = this.selectedHobbies.join(',');
+        if (this.choosenImage) {  //image
+          isExist.userImage = this.choosenImage;
+        }
+        const formData = new FormData();
+        Object.keys(isExist).map((x) => formData.append(x, isExist[x]));
         this.http
-          .post(`${environment.apiEndPoint}/student/update`, isExist)
+          .post(`${environment.apiEndPoint}/user/update`, formData)
           .subscribe((res: any) => {
             if (res.isSuccess) {
-              this.getStudentData();
+              this.getUserData();
             } else {
               alert(res.message);
             }
@@ -119,10 +135,10 @@ export class ApiCrudStudentComponent implements OnInit {
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete ?')) {
       this.http
-        .delete(`${environment.apiEndPoint}/student/delete?id=${user.id}`)
+        .delete(`${environment.apiEndPoint}/user/delete?id=${user.id}`)
         .subscribe((res: any) => {
           if (res.isSuccess) {
-            this.getStudentData();
+            this.getUserData();
           } else {
             alert(res.message);
           }
@@ -132,7 +148,7 @@ export class ApiCrudStudentComponent implements OnInit {
 
   getById(id: number) {
     this.http
-      .get(`${environment.apiEndPoint}/student/get-student-by-id?id=${id}`)
+      .get(`${environment.apiEndPoint}/user/get-user-by-id?id=${id}`)
       .subscribe((res: any) => {
         if (res.isSuccess) {
           const isExist = res.data;
@@ -142,7 +158,7 @@ export class ApiCrudStudentComponent implements OnInit {
               firstName: isExist.firstName,
               lastName: isExist.lastName,
               age: isExist.age,
-              city: isExist.city,
+              city:isExist.city,
               gender: isExist.gender,
             });
             this.selectedHobbies = isExist.hobbies.split(',');
@@ -152,13 +168,27 @@ export class ApiCrudStudentComponent implements OnInit {
         }
       });
   }
+  
+  renderImage($event: any) {
+    if ($event.target.files && $event.target.files.length > 0) {
+      this.choosenImage = $event.target.files[0];
+      var reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageBase = e.target.result;
+      };
+      // you have to declare the file loading
+      reader.readAsDataURL($event.target.files[0]);
+    }
+  }
 }
 interface IUser {
   id: number;
   firstName: string;
   lastName: string;
   age: number;
-  city: string;
+  city:string;
   gender: string;
   hobbies: string;
+  image: string; //image
 }
+
