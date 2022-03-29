@@ -23,6 +23,8 @@ import { ToogleDirective } from './custom-directive/toogle.directive';
 import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ApiCrudStudentComponent } from './api-crud-student/api-crud-student.component';
+import { ApiCrudProductComponent } from './api-crud-product/api-crud-product.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     ToogleDirective,
     FormsReactiveComponent,
     FormsTemplateComponent,
+    ApiCrudStudentComponent,
+    ApiCrudProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10 mt-3">
+            <h3 class="text-center">: Api Crud product :</h3>
+            <form [formGroup]="userForm" (ngSubmit)="submitData()">
+                <div class="form-group col-6 mt-4">
+                    <label class="fw-bold">Product name:</label>
+                    <input type="text" class="form-control" required name="pname" formControlName="productname">
+                    <label
+                        *ngIf="userForm.get('productname') && userForm.get('productname')?.touched && !userForm.get('productname')?.value"
+                        class="text-danger">
+                        Product name is required..
+                    </label>
+                </div>
+                <!-- <div class="row mt-3">
+                    <div class="col-6">
+                        <label class="fw-bold mb-2">category:</label>
+                        <div class="form-group">
+                            <label *ngFor="let item of usercategory">
+                                <input type="checkbox" (change)="size($event)"
+                                    [checked]="selectsize.includes(item)" name="hobbies" [value]="item" />
+                                {{ item }}&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group col-6">
+                        <label>Price:</label>
+                        <input type="text" name="" class="form-control" required name="Price" formControlName="Price">
+                        <label
+                            *ngIf="userForm.get('Price') && userForm.get('Price')?.touched && !userForm.get('Price')?.value"
+                            class="text-danger">
+                            Price is required..
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group col-6">
+                        <label>Description</label>
+                        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+                        <label
+                            *ngIf="userForm.get('description') && userForm.get('description')?.touched && !userForm.get('description')?.value"
+                            class="text-danger">
+                            description is required..
+                        </label>
+                    </div>
+
+                </div>
+                <div class="col-5 mt-3">
+                    <label>ClothSize:</label>
+                    <select [(ngModel)]="list" class="form-select">
+                        <option [value]="item" *ngFor="let item of list1" formControlName="clothSize">
+                            {{item}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group text-center mt-2">
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+                </div> -->
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive mt-5">
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>category</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Clothsize</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userData">
+                    <!-- <td>{{ item.productname }}</td>
+                    <td>{{ item.category}}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.Price }}</td>   
+                    <td>{{ item.clothSize }}</td>                -->
+                    <td>
+                        <button class="btn btn-outline-success me-2" (click)="getById(item.id)">Edit</button>
+                        <button class="btn btn-outline-danger me-2" (click)="deleteUser(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

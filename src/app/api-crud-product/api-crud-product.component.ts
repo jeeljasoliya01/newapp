@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-forms-reactive',
-  templateUrl: './forms-reactive.component.html',
-  styleUrls: ['./forms-reactive.component.css'],
+  selector: 'app-api-crud-product',
+  templateUrl: './api-crud-product.component.html',
+  styleUrls: ['./api-crud-product.component.css']
 })
-export class FormsReactiveComponent implements OnInit {
+export class ApiCrudProductComponent implements OnInit {
   userForm: FormGroup;
   userData: IUser[] = [];
   selectedHobbies: string[] = [];
@@ -103,3 +102,4 @@ interface IUser {
   gender: string;
   hobbies: string;
 }
+

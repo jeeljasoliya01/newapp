@@ -1,0 +1,141 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10 mt-3">
+            <h3 class="text-center">: Api Crud Student :</h3>
+            <form [formGroup]="userForm" (ngSubmit)="submitData()">
+                <div class="row mt-4">
+                    <div class="form-group col-6">
+                        <label>First Name:</label>
+                        <input type="text" class="form-control" required name="fname" formControlName="firstName">
+                        <label
+                            *ngIf="userForm.get('firstName') && userForm.get('firstName')?.touched && !userForm.get('firstName')?.value"
+                            class="text-danger">
+                            First name is required..
+                        </label>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Last Name:</label>
+                        <input type="text" class="form-control" required name="lname" formControlName="lastName">
+                        <label
+                            *ngIf="userForm.get('lastname') && userForm.get('lastname')?.touched && !userForm.get('lastname')?.value"
+                            class="text-danger">
+                            Last name is required..
+                        </label>
+                    </div>
+                </div>
+                <!-- <div class="row mt-3">
+                    <div class="form-group col-6">
+                        <label>E-mail:</label>
+                        <input type="email" name="" class="form-control" required name="email" formControlName="email">
+                        <label
+                            *ngIf="userForm.get('email') && userForm.get('email')?.touched && !userForm.get('email')?.value"
+                            class="text-danger">
+                            Email is required..
+                        </label>
+                        <label *ngIf="userForm.get('email')?.errors?.['pattern']" class="text-danger">
+                            {{ userForm.get('email')?.errors | json}}
+                            Email is invalid.
+                        </label>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Password:</label>
+                        <input type="password" name="" maxlength="8" class="form-control" required name="password"
+                            formControlName="password">
+                        <label
+                            *ngIf="userForm.get('password') && userForm.get('password')?.touched && !userForm.get('password')?.value"
+                            class="text-danger">
+                            password is required..
+                        </label>
+                    </div>
+                </div> -->
+                <div class="row mt-3">
+                    <div class="form-group col-6">
+                        <label>Age:</label>
+                        <input type="number" min="18" name="" class="form-control" required name="age"
+                            formControlName="age">
+                        <label
+                            *ngIf="userForm.get('age') && userForm.get('age')?.touched && !userForm.get('age')?.value"
+                            class="text-danger">
+                            age is required..
+                        </label>
+                        <label *ngIf="userForm.get('age')?.errors?.['min']" class="text-danger">
+                            {{ userForm.get('age')?.errors | json}}
+                            age is invalid.
+                        </label>
+                    </div>
+                    <!-- <div class="form-group col-6">
+                        <label>Phone No:</label>
+                        <input type="tel" name="" class="form-control" required name="pnumber" formControlName="phone">
+                        <label
+                            *ngIf="userForm.get('phone') && userForm.get('phone')?.touched && !userForm.get('phone')?.value"
+                            class="text-danger">
+                            phone is required
+                        </label>
+                        <label class="text-danger" *ngIf="userForm.get('phone')?.errors?.['pattern']">
+                            {{ userForm.get('phone')?.errors | json}}
+                        </label>
+                    </div> -->
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group">
+                        <p class="fw-bold">Gender :</p>
+                        <label>
+                            <input type="radio" name="gender" formControlName="gender" value="Male" />
+                            Male
+                        </label>&nbsp;
+                        <label>
+                            <input type="radio" name="gender" formControlName="gender" value="Female" />
+                            Female
+                        </label>
+                    </div><br>
+                    <div class="row">
+                        <p class="fw-bold">Hobbies :</p>
+                        <div class="form-group">
+                            <label *ngFor="let item of userHobbies">
+                                <input type="checkbox" (change)="hobbyselected($event)"
+                                    [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item" />
+                                {{ item }}&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center mt-2">
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive mt-5">
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Hobbies</th>
+                    <th>Action</th>
+                    <!-- <th>E-mail</th>
+                    <th>Password</th>
+                    <th>Phone No</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userData">
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.lastName }}</td>
+                    <td>{{ item.age }}</td>
+                    <td>{{ item.gender }}</td>
+                    <td>{{ item.hobbies }}</td>
+                    <!-- <td>{{ item.phone }}</td>
+                        <td>{{ item.email }}</td>
+                    <td>{{ item.password }}</td> -->
+                    <td>
+                        <button class="btn btn-outline-success me-2" (click)="getById(item.id)">Edit</button>
+                        <button class="btn btn-outline-danger me-2" (click)="deleteUser(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
