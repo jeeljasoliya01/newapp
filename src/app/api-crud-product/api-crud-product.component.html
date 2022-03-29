@@ -5,8 +5,7 @@
             <form [formGroup]="userForm" (ngSubmit)="submitData()">
                 <div class="form-group col-6">
                     <label>Category</label>
-                    <select class="form-select" name="category" formControlName="category"
-                        (change)="changecategory($event)">
+                    <select class="form-select" name="category" formControlName="category" (change)="changecategory($event)">
                         <option *ngFor="let item of category">
                             {{item}}
                         </option>
@@ -14,19 +13,15 @@
                 </div>
                 <div class="form-group col-6 mt-4">
                     <label>Product name:</label>
-                    <input type="text" class="form-control" required name="pname" formControlName="productname">
-                    <label
-                        *ngIf="userForm.get('productname') && userForm.get('productname')?.touched && !userForm.get('productname')?.value"
-                        class="text-danger">
+                    <input type="text" class="form-control" required name="pname" formControlName="productName">
+                    <label *ngIf="userForm.get('productName') && userForm.get('productName')?.touched && !userForm.get('productName')?.value" class="text-danger">
                         Product name is required..
                     </label>
                 </div>
                 <div class="form-group col-6 mt-3">
                     <label>Price:</label>
-                    <input type="text" name="" class="form-control" required name="Price" formControlName="Price">
-                    <label
-                        *ngIf="userForm.get('Price') && userForm.get('Price')?.touched && !userForm.get('Price')?.value"
-                        class="text-danger">
+                    <input type="text" name="" class="form-control" required name="Price" formControlName="price">
+                    <label *ngIf="userForm.get('price') && userForm.get('price')?.touched && !userForm.get('price')?.value" class="text-danger">
                         Price is required..
                     </label>
                 </div>
@@ -34,9 +29,7 @@
                     <div class="form-group col-6">
                         <label>Description</label>
                         <textarea class="form-control" rows="3" formControlName="description"></textarea>
-                        <label
-                            *ngIf="userForm.get('description') && userForm.get('description')?.touched && !userForm.get('description')?.value"
-                            class="text-danger">
+                        <label *ngIf="userForm.get('description') && userForm.get('description')?.touched && !userForm.get('description')?.value" class="text-danger">
                             description is required..
                         </label>
                     </div>
@@ -44,7 +37,7 @@
                 <div class="row mt-3">
                     <div class="col-6">
                         <div class="form-group">
-                            <label >ClothSize</label>
+                            <label>ClothSize</label>
                             <select class="form-select" name="sizes" formControlName="clothSize" (change)="changeSize($event)">
                                 <option *ngFor="let size of clothSize">
                                     {{size}}
@@ -89,9 +82,9 @@
             <tbody>
                 <tr *ngFor="let item of userData">
                     <td>{{item.category}}</td>
-                    <td>{{item.productname}}</td>
+                    <td>{{item.productName}}</td>
                     <td>{{item.description}}</td>
-                    <td>{{item.Price}}</td>
+                    <td>{{item.price}}</td>
                     <td>{{item.clothSize}}</td>
                     <td>{{item.inStock}}</td>
                     <td>

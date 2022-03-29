@@ -17,9 +17,9 @@ export class ApiCrudProductComponent implements OnInit {
     this.userForm = this.fb.group({
       id: [''],
       category: [''],
-      productname: ['', [Validators.required]],
+      productName: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      Price: ['', [Validators.required]],
+      price: ['', [Validators.required]],
       clothSize: [''],
       inStock: [''],
 
@@ -83,9 +83,9 @@ export class ApiCrudProductComponent implements OnInit {
       const isExist = this.userData.find((x) => x.id == this.userForm.value.id);
       if (isExist) {
         isExist.category = this.userForm.value.category;
-        isExist.productname = this.userForm.value.productname;
+        isExist.productName = this.userForm.value.productName;
         isExist.description = this.userForm.value.description;
-        isExist.Price = this.userForm.value.Price;
+        isExist.price = this.userForm.value.price;
         isExist.clothSize = this.userForm.value.clothSize;
         isExist.inStock = this.userForm.value.inStock;
         this.http
@@ -128,9 +128,9 @@ export class ApiCrudProductComponent implements OnInit {
             this.userForm.patchValue({
               id: isExist._id,
               category: isExist.category,
-              productname: isExist.productname,
+              productName: isExist.productName,
               description: isExist.description,
-              Price: isExist.Price,
+              price: isExist.price,
               clothSize: isExist.clothSize,
               inStock: isExist.inStock,
             });
@@ -145,9 +145,9 @@ export class ApiCrudProductComponent implements OnInit {
 interface IUser {
   id: number;
   category: string;
-  productname: string;
+  productName: string;
   description: string;
-  Price: number;
+  price: number;
   clothSize: string;
   inStock: string;
 }
