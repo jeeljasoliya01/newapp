@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiCrudStudentComponent } from './api-crud-student/api-crud-student.component';
 import { ApiCrudProductComponent } from './api-crud-product/api-crud-product.component';
 import { ApiCrudUserComponent } from './api-crud-user/api-crud-user.component';
+import { ApiTokenBaseCrudComponent } from './api-token-base-crud/api-token-base-crud.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ApiCrudUserComponent } from './api-crud-user/api-crud-user.component';
     ApiCrudStudentComponent,
     ApiCrudProductComponent,
     ApiCrudUserComponent,
+    ApiTokenBaseCrudComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h3 class="text-center mb-4">Api Crud Token-Base</h3>
+            <form [formGroup]="userform">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" name="fname" formControlName="fullname" class="form-control">
+                        <label
+                            *ngIf="userform.get('fullname') && userform.get('fullname')?.touched && !userform.get('fullname')?.value"
+                            class="text-danger">
+                            Full name is Required...
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group">
+                        <label>E-mail:</label>
+                        <input type="email" name="email" formControlName="Email" class="form-control">
+                        <label
+                            *ngIf="userform.get('Email') && userform.get('Email')?.touched && !userform.get('Email')?.value"
+                            class="text-danger">
+                            Email is Required...
+                        </label>
+                        <label *ngIf="userform.get('Email')?.errors?.['pattern']" class="text-danger">
+                            {{ userform.get('Email')?.errors | json}} &nbsp;
+                            Email is in-valid.
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group col-6">
+                        <label>Password:</label>
+                        <input type="password" name="password" formControlName="password" class="form-control">
+                        <label
+                            *ngIf="userform.get('password') && userform.get('password')?.touched && !userform.get('password')?.value"
+                            class="text-danger">
+                            Password is required...
+                        </label>
+                        <label *ngIf="userform.get('password')?.errors?.['pattern']" class="text-danger">
+                            {{ userform.get('password')?.errors | json}}
+                           password is in-valid.
+                        </label>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Confirm Password:</label>
+                        <input type="password" name="cpassword" formControlName="cpassword" class="form-control">
+                        <label
+                            *ngIf="userform.get('cpassword') && userform.get('cpassword')?.touched && !userform.get('cpassword')?.value"
+                            class="text-danger">
+                            Confirm password is required..
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group">
+                        <label>Mobile no:</label>
+                        <input type="tel" name="phone" formControlName="phone" class="form-control">
+                        <label
+                            *ngIf="userform.get('phone') && userform.get('phone')?.touched && !userform.get('phone')?.value"
+                            class="text-danger">
+                            mobile number is required..
+                        </label>
+                        <label *ngIf="userform.get('phone')?.errors?.['pattern']" class="text-danger">
+                            {{ userform.get('phone')?.errors | json}}
+                            mobile number is in-valid.
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group text-center mt-4">
+                    <button type="submit" class="btn btn-success" [disabled]="!userform.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

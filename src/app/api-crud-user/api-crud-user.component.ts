@@ -32,8 +32,8 @@ export class ApiCrudUserComponent implements OnInit {
       id: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      age: ['', Validators.required],
-      city: ['', Validators.required],
+      age: ['', [Validators.required]],
+      city: ['', [Validators.required]],
       gender: [''],
     });
   }
@@ -86,7 +86,7 @@ export class ApiCrudUserComponent implements OnInit {
         .post(`${environment.apiEndPoint}/user/add`, formData)
         .subscribe((res: any) => {
           if (res.isSuccess) {
-            this.getUserData();
+            this.getUserData(); 
           } else {
             alert(res.message);
           }
@@ -106,7 +106,7 @@ export class ApiCrudUserComponent implements OnInit {
         const formData = new FormData();
         Object.keys(isExist).map((x) => formData.append(x, isExist[x]));
         this.http
-          .post(`${environment.apiEndPoint}/user/update`, formData)
+          .post(`${environment.apiEndPoint}/user/update`,formData)
           .subscribe((res: any) => {
             if (res.isSuccess) {
               this.getUserData();
