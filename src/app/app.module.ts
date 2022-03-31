@@ -27,6 +27,7 @@ import { ApiCrudStudentComponent } from './api-crud-student/api-crud-student.com
 import { ApiCrudProductComponent } from './api-crud-product/api-crud-product.component';
 import { ApiCrudUserComponent } from './api-crud-user/api-crud-user.component';
 import { ApiTokenBaseCrudComponent } from './api-token-base-crud/api-token-base-crud.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ApiTokenBaseCrudComponent } from './api-token-base-crud/api-token-base-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
