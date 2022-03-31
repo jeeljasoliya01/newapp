@@ -28,6 +28,7 @@ import { ApiCrudProductComponent } from './api-crud-product/api-crud-product.com
 import { ApiCrudUserComponent } from './api-crud-user/api-crud-user.component';
 import { ApiTokenBaseCrudComponent } from './api-token-base-crud/api-token-base-crud.component';
 import { RouterModule } from '@angular/router';
+import { ErrorsComponent } from './errors/errors.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { RouterModule } from '@angular/router';
     ApiCrudProductComponent,
     ApiCrudUserComponent,
     ApiTokenBaseCrudComponent,
+    ErrorsComponent,
   ],
   imports: [
     BrowserModule,
