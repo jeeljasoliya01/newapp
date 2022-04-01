@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h2 class="text-center mt-3">Api-Student-Template</h2>
+        <div class="col-6">
+            <form #userForm="ngForm" (ngSubmit)="submitData()">
+                <div class="row mt-3">
+                    <div class="form-group">
+                        <label class="ms-2 fw-bold">First Name:</label>
+                        <input type="hidden" name="id" #id="ngModel" ngModel />
+                        <input type="text" name="firstName" #firstName="ngModel" ngModel class="form-control" />
+                        <label *ngIf="firstName && firstName?.touched && !firstName?.value" class="text-danger">
+                            First name is required
+                        </label>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="ms-2 fw-bold">Last Name:</label>
+                        <input type="text" name="lastName" #lastName="ngModel" ngModel class="form-control" />
+                        <label *ngIf="lastName && lastName?.touched && !lastName?.value" class="text-danger">
+                            Last name is required
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group col-6 mb-3">
+                        <label class="ms-2 fw-bold">age :</label>
+                        <input type="number" class="form-control" min="18" name="age" required #age="ngModel" ngModel />
+                        <label *ngIf="age && age?.touched && !age?.value" class="text-danger">
+                            age is required
+                        </label>
+                        <label class="text-danger" *ngIf="age?.errors?.['min']">
+                            {{ age?.errors | json }}
+                            age is invalid
+                        </label>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="ms-2 fw-bold">city</label>
+                            <select  class="custom-select" #city="ngModel" ngModel name="city" required class="form-select" >
+                                <option value="surat">Surat</option>
+                                <option value="vadodara">Vadodara</option>
+                                <option value="ahmedabad">Ahmedabad</option>
+                                <option value="rajkot">Rajkot</option>
+                            </select>
+                            <label *ngIf="city && city?.touched && !city?.value" class="text-danger">
+                                city is required
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="fw-bold">Gender :</p>
+                    <label>
+                        <input type="radio" name="gender" #gender="ngModel" ngModel value="Male" />
+                        Male
+                    </label>&nbsp;
+                    <label>
+                        <input type="radio" name="gender" #gender="ngModel" ngModel value="Female" />
+                        Female
+                    </label>
+                </div><br>
+                <div class="row">
+                    <p class="fw-bold">Hobbies :</p>
+                    <div class="form-group">
+                        <label *ngFor="let item of hobbies">
+                            <input type="checkbox" (change)="hobbyselected($event)"
+                                [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item">
+                            {{item}}&nbsp;&nbsp;
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-group text-center mt-2">
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-reasponsive mt-4">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>age</th>
+                    <th>City</th>
+                    <th>Gender</th>
+                    <th>Hobbies</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userData">
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.lastName }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.age }}</td>
+                    <td>{{ item.gender }}</td>
+                    <td>{{ item.hobbies }}</td>
+                    <td>
+                        <button class="btn btn-success me-2" (click)="getById(item.id)">Edit</button>
+                        <button class="btn btn-danger me-2" (click)="deleteUser(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

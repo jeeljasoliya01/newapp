@@ -29,6 +29,10 @@ import { ApiCrudUserComponent } from './api-crud-user/api-crud-user.component';
 import { ApiTokenBaseCrudComponent } from './api-token-base-crud/api-token-base-crud.component';
 import { RouterModule } from '@angular/router';
 import { ErrorsComponent } from './errors/errors.component';
+import { ApiStudentTemplateComponent } from './api-student-template/api-student-template.component';
+import { ApiProductTemplateComponent } from './api-product-template/api-product-template.component';
+import { ApiUserTemplateComponent } from './api-user-template/api-user-template.component';
+import { GoRestComponent } from './go-rest-api/go-rest.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +60,10 @@ import { ErrorsComponent } from './errors/errors.component';
     ApiCrudUserComponent,
     ApiTokenBaseCrudComponent,
     ErrorsComponent,
+    ApiStudentTemplateComponent,
+    ApiProductTemplateComponent,
+    ApiUserTemplateComponent,
+    GoRestComponent,
   ],
   imports: [
     BrowserModule,

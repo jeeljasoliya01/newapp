@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { isSubscription } from 'rxjs/internal/Subscription';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,17 +12,96 @@ import { environment } from 'src/environments/environment';
 export class ApiTokenBaseCrudComponent implements OnInit {
   userform: FormGroup;
   userData: Iuser[] = [];
-  logintoken: string = '';
+  loginToken: string = '';
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.userform = this.fb.group({
+      id: [''],
       fullname: ['', [Validators.required]],
-      Email: ['',[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
-      password: ['',[Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8}$')]],
+      Email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8}$'
+          ),
+        ],
+      ],
       cpassword: ['', [Validators.required]],
-      phone: ['',[Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+      phone: [
+        '',
+        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      ],
     });
   }
-  ngOnInit(): void {}
+  async ngOnInit() {
+    await this.loginUser();
+    this.getAllUser();
+    this.postUser();
+  }
+
+  async loginUser() {
+    await new Promise((resolve) => {
+      this.http
+        .post(`${environment.irispoint}/User/LoginAuthenticate`, {
+          email: 'admin@mail.com',
+          password: 'Test@123',
+        })
+        .subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.loginToken = res.responseData.token;
+          }
+          resolve(true);
+        });
+    });
+  }
+
+  getAllUser() {
+    this.http
+      .get(`${environment.irispoint}/User/GetAllUsers`, {
+        headers: {
+          Authorization: `Bearer ${this.loginToken}`,
+        },
+      })
+      .subscribe((res: any) => {
+        if (res.isSuccess) {
+          console.log(res.responseData);
+        }
+      });
+  }
+
+  postUser() {
+    this.http
+      .post(
+        `${environment.irispoint}/User/CreateUser`,
+        {
+          email: 'jeel@gmail.com',
+          fullName: 'Jeel',
+          mobileNumber: '78965412',
+          password: 'Test@123',
+          roleId: 2,
+          profileImageBase64: '',
+          userRole: [],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${this.loginToken}`,
+          },
+        }
+      )
+      .subscribe((res: any) => {
+        if (res.isSuccess) {
+          console.log(res.responseData);
+        }
+      });
+  }
 
   submitData() {
     console.log(this.userData);
@@ -29,10 +109,22 @@ export class ApiTokenBaseCrudComponent implements OnInit {
       return;
     }
     if (!this.userform.value.id) {
-      this.userData.push({
+      const payload = {
         ...this.userform.value,
-        id: this.userData.length + 1,
-      });
+      };
+      this.http
+        .post(`${environment.irispoint}/User/UpdateUser`, payload, {
+          headers: {
+            Authorization: `Bearer ${this.loginToken}`,
+          },
+        })
+        .subscribe((res: any) => {
+          if (res.isSuccess) {
+            this.getAllUser();
+          }else{
+            alert(res.message);
+          }
+        });
     } else {
       const isExist = this.userData.find((x) => x.id == this.userform.value.id);
       if (isExist) {

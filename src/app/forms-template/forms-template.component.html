@@ -2,18 +2,19 @@
     <div class="row justify-content-center">
         <div class="col-9 mt-3">
             <h3 class="text-center mb-2 fw-bold">: Form-Template :</h3>
-            <form #userForm="ngForm" (ngSubmit)="submitData(userForm)">
+            <form #userForm="ngForm" (ngSubmit)="submitData()">
                 <div class="row mt-5">
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">First Name:</label>
-                        <input type="text" class="form-control" required name="fname" #firstname="ngModel" ngModel />
+                        <input type="hidden" name="id" #id="ngModel" ngModel />
+                        <input type="text" class="form-control" required name="firstname" #firstname="ngModel" ngModel />
                         <label *ngIf="firstname && firstname?.touched && !firstname?.value" class="text-danger">
                             First name is required
                         </label>
                     </div>
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">Last Name:</label>
-                        <input type="text" class="form-control" required name="lname" #lastname="ngModel" ngModel>
+                        <input type="text" class="form-control" required name="lastname" #lastname="ngModel" ngModel>
                         <label *ngIf="lastname && lastname?.touched && !lastname?.value" class="text-danger">
                             last name is required
                         </label>
@@ -48,7 +49,7 @@
                 <div class="row">
                     <div class="form-group col-6 mb-3">
                         <label class="ms-2 fw-bold">Age :</label>
-                        <input type="number" class="form-control" min="18" name="age" required #Age="ngModel" ngModel />
+                        <input type="number" class="form-control" min="18" name="Age" required #Age="ngModel" ngModel />
                         <label *ngIf="Age && Age?.touched && !Age?.value" class="text-danger">
                             Age is required
                         </label>
@@ -84,9 +85,10 @@
                 <div class="row">
                     <p class="fw-bold">Hobbies :</p>
                     <div class="form-group">
-                        <label *ngFor="let item of userHobbies">
-                            <input type="checkbox" (change)="hobbyselected($event)" #hobbies="ngModel" ngModel [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item" />
-                            {{ item }}&nbsp;&nbsp;
+                        <label *ngFor="let item of hobbies">
+                            <input type="checkbox" (change)="hobbyselected($event)"
+                                [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item">
+                            {{item}}&nbsp;&nbsp;
                         </label>
                     </div>
                 </div>
@@ -100,7 +102,7 @@
             <p>Selected hobbies: {{ selectedHobbies | json }}</p> -->
         </div>
     </div>
-    <!-- <div class="table-reasponsive mt-4">
+    <div class="table-reasponsive mt-4">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -131,5 +133,5 @@
                 </tr>
             </tbody>
         </table>
-    </div> -->
+    </div>
 </div>

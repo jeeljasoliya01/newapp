@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   apiEndPoint:'https://student-api.mycodelibraries.com/api',
-  irispoint:'https://iris-api.mycodelibraries.com/api'
+  irispoint:'https://iris-api.mycodelibraries.com/api',
+  gorest:'https://gorest.co.in/public',
+  token:'6bb12684579961ea1884500b0efb91a3b69716ee7db0e57ff415cbaa9d5fd600'
 };
 
 /*
