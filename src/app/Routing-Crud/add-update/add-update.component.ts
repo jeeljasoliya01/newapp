@@ -16,26 +16,22 @@ export class AddUpdateComponent implements OnInit {
   id: string = '';
   city: any = ['','Surat','Bhavnagar','Rajkot','Vadodara','Ahmedabad','Mumbai'];
   userHobbies: string[] = ['Cricket','Football','Sports','Reading','Playing','Gaming'];
- 
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private route: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
+
+  constructor(private fb: FormBuilder ,private http: HttpClient ,private route: Router ,private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.getdataId(this.id);
     }
     this.userform = this.fb.group({
-      id:[''],
+      id: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      age: ['', Validators.required],
+      age: ['', [Validators.required]],
       city: ['', [Validators.required]],
       gender: [''],
     });
   }
+
   get City() {
     return this.userform.get('city');
   }
