@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -48,5 +49,11 @@ export class AppComponent {
 
   showValues() {
     debugger;
+  }
+
+  constructor(private route: Router){}
+
+  product(){
+    this.route.navigate(['/api-crud-product'])
   }
 }

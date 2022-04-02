@@ -95,6 +95,7 @@ export class ApiStudentTemplateComponent implements OnInit {
     this.userForm.reset();
     this.selectedHobbies = [];
   }
+  
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete  ?')) {
       this.http

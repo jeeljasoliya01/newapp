@@ -1,0 +1,34 @@
+<div class="text-center mt-5">
+    <button class="btn btn-outline-success" (click)="addstudent()">ADD</button>
+</div>
+<div class="container">
+    <div class="table-responsive mt-3">
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Gender</th>
+                    <th>Hobbies</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userdata">
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.lastName }}</td>
+                    <td>{{ item.age }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.gender }}</td>
+                    <td>{{ item.hobbies }}</td>
+                    <td>
+                        <button class="btn btn-outline-success me-3" (click)="getdataId(item.id)">Edit</button>
+                        <button class="btn btn-outline-danger me-3" (click)="deletedata(item.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

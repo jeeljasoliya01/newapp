@@ -10,6 +10,9 @@ import { FormsReactiveComponent } from './forms-reactive/forms-reactive.componen
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
 import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
 import { PipesComponent } from './pipes/pipes.component';
+import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.component';
+import { DeleteComponent } from './Routing-Crud/delete/delete.component';
+import { ListComponent } from './Routing-Crud/list/list.component';
 
 const routes: Routes = [
   {
@@ -48,6 +51,22 @@ const routes: Routes = [
   {
     path:'api-crud-product',
     component:ApiCrudProductComponent
+  },
+  {
+    path:'list',
+    component:ListComponent
+  },
+  {
+    path:'add',
+    component:AddUpdateComponent
+  },
+  {
+    path:'update/:id',
+    component:AddUpdateComponent
+  },
+  {
+    path:'delete/:id',
+    component:DeleteComponent
   },
   {
     path:'**',

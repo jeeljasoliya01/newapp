@@ -33,6 +33,9 @@ import { ApiStudentTemplateComponent } from './api-student-template/api-student-
 import { ApiProductTemplateComponent } from './api-product-template/api-product-template.component';
 import { ApiUserTemplateComponent } from './api-user-template/api-user-template.component';
 import { GoRestComponent } from './go-rest-api/go-rest.component';
+import { ListComponent } from './Routing-Crud/list/list.component';
+import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.component';
+import { DeleteComponent } from './Routing-Crud/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,9 @@ import { GoRestComponent } from './go-rest-api/go-rest.component';
     ApiProductTemplateComponent,
     ApiUserTemplateComponent,
     GoRestComponent,
+    ListComponent,
+    AddUpdateComponent,
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,
