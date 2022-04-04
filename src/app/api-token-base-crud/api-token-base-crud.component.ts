@@ -49,9 +49,6 @@ export class ApiTokenBaseCrudComponent implements OnInit {
   getAllUser() {
     this.http
       .get(`${environment.irispoint}/User/GetAllUsers`, {
-        headers: {
-          Authorization: `Bearer ${this.loginToken}`,
-        },
       })
       .subscribe((res: any) => {
         if (res.isSuccess) {
@@ -98,9 +95,6 @@ export class ApiTokenBaseCrudComponent implements OnInit {
       };
       this.http
         .post(`${environment.irispoint}/User/UpdateUser`, payload, {
-          headers: {
-            Authorization: `Bearer ${this.loginToken}`,
-          },
         })
         .subscribe((res: any) => {
           if (res.isSuccess) {
@@ -119,9 +113,6 @@ export class ApiTokenBaseCrudComponent implements OnInit {
         isExist.phone = this.userform.value.phone;
 
         this.http.post(`${environment.irispoint}/User/createUser`,isExist,{
-          headers:{
-            Authorization: `Bearer ${this.loginToken}`,
-          },
         })
         .subscribe((res: any) => {
           if (res.isSuccess) {
@@ -141,9 +132,6 @@ export class ApiTokenBaseCrudComponent implements OnInit {
     if (confirm('Are you sure you want to delete ?')) {
       this.userData = this.userData.filter((x) => x.id != user.id);
       this.http.delete(`${environment.irispoint}/User/DeleteUser?.id=${user.id}`,{
-        headers:{
-          Authorization: `Bearer ${this.loginToken}`,
-        },
       })
       .subscribe((res: any) => {
         if (res.isSuccess) {
@@ -157,9 +145,6 @@ export class ApiTokenBaseCrudComponent implements OnInit {
 
   getById(id: number) {
     this.http.get(`${environment.irispoint}/User/GetUser-id?.id=${id}`,{
-      headers:{
-        Authorization: `Bearer ${this.loginToken}`,
-      },
     })
     .subscribe((res: any) => {
       if (res.isSuccess) {

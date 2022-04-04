@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'newapp';
@@ -14,15 +14,14 @@ export class AppComponent {
   selectedClassColor: string = '';
   selectedNumber: number = 0;
 
-
   getSelectedColor(): string {
     return this.selectedColor;
   }
 
-  get Colors(): string{
+  get Colors(): string {
     return this.selectedColor;
   }
-  
+
   getClass(): string {
     return this.selectedNumber == 0
       ? 'bg-yellow'
@@ -51,9 +50,13 @@ export class AppComponent {
     debugger;
   }
 
-  constructor(private route: Router){}
+  constructor(private route: Router) {}
 
-  product(){
-    this.route.navigate(['/api-crud-product'])
+  product() {
+    this.route.navigate(['/api-crud-product']);
+  }
+  logout() {
+    localStorage.removeItem('currentUserValue');
+    this.route.navigate(['/login']);
   }
 }

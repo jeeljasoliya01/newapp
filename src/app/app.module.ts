@@ -22,7 +22,7 @@ import { TestDirective } from './custom-directive/test.directive';
 import { ToogleDirective } from './custom-directive/toogle.directive';
 import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiCrudStudentComponent } from './api-crud-student/api-crud-student.component';
 import { ApiCrudProductComponent } from './api-crud-product/api-crud-product.component';
 import { ApiCrudUserComponent } from './api-crud-user/api-crud-user.component';
@@ -36,6 +36,8 @@ import { GoRestComponent } from './go-rest-api/go-rest.component';
 import { ListComponent } from './Routing-Crud/list/list.component';
 import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.component';
 import { DeleteComponent } from './Routing-Crud/delete/delete.component';
+import { ApiPrefixInterceptor } from './interceptors/Api-prefix.interceptor';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import { DeleteComponent } from './Routing-Crud/delete/delete.component';
     ListComponent,
     AddUpdateComponent,
     DeleteComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,9 @@ import { DeleteComponent } from './Routing-Crud/delete/delete.component';
     HttpClientModule,
     RouterModule
   ],
-  providers: [],
+  providers: [ 
+    { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
