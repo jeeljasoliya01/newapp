@@ -38,6 +38,8 @@ import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.compone
 import { DeleteComponent } from './Routing-Crud/delete/delete.component';
 import { ApiPrefixInterceptor } from './interceptors/Api-prefix.interceptor';
 import { LoginComponent } from './login/login.component';
+import { ParentComponent } from './parent-child/parent/parent.component';
+import { ChildComponent } from './parent-child/child/child.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { LoginComponent } from './login/login.component';
     AddUpdateComponent,
     DeleteComponent,
     LoginComponent,
+    ParentComponent,
+    ChildComponent,
   ],
   imports: [
     BrowserModule,

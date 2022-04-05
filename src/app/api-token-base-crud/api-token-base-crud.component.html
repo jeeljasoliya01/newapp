@@ -6,9 +6,9 @@
                 <div class="row">
                     <div class="form-group">
                         <label>Full Name:</label>
-                        <input type="text" name="fname" formControlName="fullname" class="form-control">
+                        <input type="text" name="fname" formControlName="fullName" class="form-control">
                         <label
-                            *ngIf="userform.get('fullname') && userform.get('fullname')?.touched && !userform.get('fullname')?.value"
+                            *ngIf="userform.get('fullName') && userform.get('fullName')?.touched && !userform.get('fullName')?.value"
                             class="text-danger">
                             Full name is Required...
                         </label>
@@ -17,15 +17,15 @@
                 <div class="row mt-3">
                     <div class="form-group">
                         <label>E-mail:</label>
-                        <input type="email" name="email" formControlName="Email" class="form-control">
+                        <input type="email" name="email" formControlName="email" class="form-control">
                         <label
-                            *ngIf="userform.get('Email') && userform.get('Email')?.touched && !userform.get('Email')?.value"
+                            *ngIf="userform.get('email') && userform.get('email')?.touched && !userform.get('email')?.value"
                             class="text-danger">
-                            Email is Required...
+                            email is Required...
                         </label>
-                        <label *ngIf="userform.get('Email')?.errors?.['pattern']" class="text-danger">
-                            {{ userform.get('Email')?.errors | json}} &nbsp;
-                            Email is in-valid.
+                        <label *ngIf="userform.get('email')?.errors?.['pattern']" class="text-danger">
+                            {{ userform.get('email')?.errors | json}} &nbsp;
+                            email is in-valid.
                         </label>
                     </div>
                 </div>
@@ -56,14 +56,14 @@
                 <div class="row mt-3">
                     <div class="form-group">
                         <label>Mobile no:</label>
-                        <input type="tel" name="phone" formControlName="phone" class="form-control">
+                        <input type="tel" name="phone" formControlName="mobileNumber" class="form-control">
                         <label
-                            *ngIf="userform.get('phone') && userform.get('phone')?.touched && !userform.get('phone')?.value"
+                            *ngIf="userform.get('mobileNumber') && userform.get('mobileNumber')?.touched && !userform.get('mobileNumber')?.value"
                             class="text-danger">
                             mobile number is required..
                         </label>
-                        <label *ngIf="userform.get('phone')?.errors?.['pattern']" class="text-danger">
-                            {{ userform.get('phone')?.errors | json}}
+                        <label *ngIf="userform.get('mobileNumber')?.errors?.['pattern']" class="text-danger">
+                            {{ userform.get('mobileNumber')?.errors | json}}
                             mobile number is in-valid.
                         </label>
                     </div>
@@ -81,16 +81,16 @@
                     <th>Fullname</th>
                     <th>Email</th>
                     <th>password</th>
-                    <th>Phone</th>
+                    <th>mobileNumber</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of userData">
-                    <td>{{ item.fullname }}</td>
-                    <td>{{ item.Email }}</td>
+                    <td>{{ item.fullName }}</td>
+                    <td>{{ item.email }}</td>
                     <td>{{ item.password }}</td>
-                    <td>{{ item.phone }}</td>
+                    <td>{{ item.mobileNumber }}</td>
                     <td>
                         <button class="btn btn-outline-success me-2" (click)="getById(item.id)">Edit</button>
                         <button class="btn btn-outline-danger me-2" (click)="deleteUser(item)">Delete</button>

@@ -1,1 +1,106 @@
-<p>api-product-template works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <h2 class="text-center mt-3">Api-Product-Template</h2>
+        <div class="col-6">
+            <form #userForm="ngForm" (ngSubmit)="submitData()">
+                <div class="form-group">
+                    <input type="hidden" name="id" #id="ngModel" ngModel />
+                    <label class="fw-bold">Category</label>
+                    <select id="category" class="form-select" #category="ngModel" ngModel name="category" required>
+                        <option value="boys">Boys</option>
+                        <option value="girls">Girls</option>
+                    </select>
+                </div>
+                <div class="col mt-3">
+                    <div class="form-group">
+                        <label class="fw-bold"> Product Name</label>
+                        <input type="text" class="form-control" name="productName" #productName="ngModel" ngModel
+                            required />
+                        <label *ngIf="productName && productName?.touched && !productName?.value" class="text-danger">
+                            Product Name is required
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="fw-bold">Description</label>
+                            <input type="text" class="form-control" name="description" #description="ngModel" ngModel
+                                required />
+                            <label *ngIf="description && description?.touched && !description?.value"
+                                class="text-danger">
+                                Description is required
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="fw-bold">Price</label>
+                            <input type="number" class="form-control" name="price" #price="ngModel" ngModel required />
+                            <label *ngIf="price && price?.touched && !price?.value" class="text-danger">
+                                price is required
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="fw-bold"> Cloth Size</label>
+                            <select id="size" class="form-select" #clothSize="ngModel" ngModel name="clothSize"
+                                required>
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                                <option value="xxl">XXL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="radio"><br>
+                                In Stock :
+                            <label *ngFor="let inStock of Stock">
+                                <input type="radio" name="inStock" #inStock="ngModel" ngModel [value]="inStock" required>
+                                {{ inStock }} &nbsp;
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center mt-2">
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive mt-5 text-center">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Cloth Size</th>
+                    <th>In Stock</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userData">
+                    <td>{{item.category}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.clothSize}}</td>
+                    <td>{{item.inStock}}</td>
+                    <td>
+                        <button class="btn btn-outline-success me-2" (click)="getById(item.id)">Edit</button>
+                        <button class="btn btn-outline-danger me-2" (click)="deleteUser(item)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="container mt-3">
+    <p>parent works!</p>
+    <app-child [name]="test" (dataUpdate)="doUpdate($event)"></app-child>
+    <br>
+    <p class="fw-bold">Updated from child value is {{ updateSTring }}</p>
+</div>
