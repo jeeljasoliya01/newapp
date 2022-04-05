@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-api-crud-product',
@@ -13,7 +14,7 @@ export class ApiCrudProductComponent implements OnInit {
   userData: IUser[] = [];
   category: any = ['Boys', 'Girls'];
   clothSize: any = ['S', 'M', 'L', 'XL', 'XXL'];
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private ProductService:ProductService) {
     this.userForm = this.fb.group({
       id: [''],
       category: [''],
@@ -41,9 +42,12 @@ export class ApiCrudProductComponent implements OnInit {
       onlySelf: true
     })
   }
+
+  
   getProductData() {
-    this.http
-      .get(`${environment.apiEndPoint}/product/get`)
+  
+    this.ProductService.getProductData() //services
+
       .subscribe((res: any) => {
         if (res.isSuccess) {
           this.userData = res.data;
@@ -69,8 +73,8 @@ export class ApiCrudProductComponent implements OnInit {
       const payload = {
         ...this.userForm.value,
       };
-      this.http
-        .post(`${environment.apiEndPoint}/product/add`, payload)
+
+       this.ProductService.submitData(payload) //service
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getProductData();
@@ -88,8 +92,8 @@ export class ApiCrudProductComponent implements OnInit {
         isExist.price = this.userForm.value.price;
         isExist.clothSize = this.userForm.value.clothSize;
         isExist.inStock = this.userForm.value.inStock;
-        this.http
-          .post(`${environment.apiEndPoint}/product/update`, isExist)
+       
+        this.ProductService.updatedata(isExist) //services
           .subscribe((res: any) => {
             if (res.isSuccess) {
               this.getProductData();
@@ -107,8 +111,9 @@ export class ApiCrudProductComponent implements OnInit {
 
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete  ?')) {
-      this.http
-        .delete(`${environment.apiEndPoint}/product/delete?id=${user.id}`)
+     
+      this.ProductService.deleteUser(user)  //services
+
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getProductData();
@@ -119,8 +124,9 @@ export class ApiCrudProductComponent implements OnInit {
     }
   }
   getById(id: number) {
-    this.http
-      .get(`${environment.apiEndPoint}/product/get-product-by-id?id=${id}`)
+   
+    this.ProductService.getById(id) //services
+
       .subscribe((res: any) => {
         if (res.isSuccess) {
           const isExist = res.data;

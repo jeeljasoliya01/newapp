@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-api-crud-user',
@@ -35,7 +36,7 @@ export class ApiCrudUserComponent implements OnInit {
     'Dancing',
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private UserService: UserService) {
     this.userForm = this.fb.group({
       id: [''],
       firstName: ['', [Validators.required]],
@@ -56,9 +57,9 @@ export class ApiCrudUserComponent implements OnInit {
     });
   }
 
-  getUserData() {
-    this.http
-      .get(`${environment.apiEndPoint}/user/get`)
+  getUserData() {     
+    this.UserService.getUserData()  //services
+    
       .subscribe((res: any) => {
         if (res.isSuccess) {
           this.userData = res.data;
@@ -92,9 +93,10 @@ export class ApiCrudUserComponent implements OnInit {
       }
       const formData = new FormData();
       Object.keys(payload).map((x) => formData.append(x, payload[x]));
-      this.http
-        .post(`${environment.apiEndPoint}/user/add`, formData)
-        .subscribe((res: any) => {
+      
+      this.UserService.submitData(formData)   //services
+       
+      .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getUserData();
           } else {
@@ -118,9 +120,10 @@ export class ApiCrudUserComponent implements OnInit {
         }
         const formData = new FormData();
         Object.keys(isExist).map((x) => formData.append(x, isExist[x]));
-        this.http
-          .post(`${environment.apiEndPoint}/user/update`, formData)
-          .subscribe((res: any) => {
+        
+        this.UserService.updaatedata(formData)   //services
+          
+        .subscribe((res: any) => {
             if (res.isSuccess) {
               this.getUserData();
             } else {
@@ -146,10 +149,10 @@ export class ApiCrudUserComponent implements OnInit {
   }
 
   deleteUser(user: IUser) {
-    if (confirm('Are you sure you want to delete ?')) {
-      this.http
-        .delete(`${environment.apiEndPoint}/user/delete?id=${user.id}`)
-        .subscribe((res: any) => {
+    if (confirm('Are you sure you want to delete ?')) {      
+      this.UserService.deleteUser(user)  //services
+        
+      .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getUserData();
           } else {
@@ -159,9 +162,9 @@ export class ApiCrudUserComponent implements OnInit {
     }
   }
 
-  getById(id: number) {
-    this.http
-      .get(`${environment.apiEndPoint}/user/get-user-by-id?id=${id}`)
+  getById(id: number) {  
+    this.UserService.getById(id)  //services
+    
       .subscribe((res: any) => {
         if (res.isSuccess) {
           const isExist = res.data;

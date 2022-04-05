@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { StudentService } from '../services/student.service';
 
 @Component({
   selector: 'app-api-crud-student',
@@ -11,7 +12,15 @@ import { environment } from 'src/environments/environment';
 export class ApiCrudStudentComponent implements OnInit {
   userForm: FormGroup;
   userData: IUser[] = [];
-  city: any = ['','Surat', 'Bhavnagar', 'Rajkot' , 'Vadodara' , 'Ahmedabad','Mumbai'];
+  city: any = [
+    '',
+    'Surat',
+    'Bhavnagar',
+    'Rajkot',
+    'Vadodara',
+    'Ahmedabad',
+    'Mumbai',
+  ];
   selectedHobbies: string[] = [];
   userHobbies: string[] = [
     'cricket',
@@ -22,7 +31,11 @@ export class ApiCrudStudentComponent implements OnInit {
     'Dancing',
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private StudentService: StudentService
+  ) {
     this.userForm = this.fb.group({
       id: [''],
       firstName: ['', [Validators.required]],
@@ -42,8 +55,7 @@ export class ApiCrudStudentComponent implements OnInit {
   }
 
   getStudentData() {
-    this.http
-      .get(`${environment.apiEndPoint}/student/get`)
+    this.StudentService.getStudentData() //services
       .subscribe((res: any) => {
         if (res.isSuccess) {
           this.userData = res.data;
@@ -57,7 +69,6 @@ export class ApiCrudStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.selectedHobbies = ['travaling'];
     this.getStudentData();
   }
 
@@ -71,8 +82,7 @@ export class ApiCrudStudentComponent implements OnInit {
         ...this.userForm.value,
         hobbies: this.selectedHobbies.join(','),
       };
-      this.http
-        .post(`${environment.apiEndPoint}/student/add`, payload)
+      this.StudentService.submitData(payload) //services
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getStudentData();
@@ -89,8 +99,8 @@ export class ApiCrudStudentComponent implements OnInit {
         isExist.city = this.userForm.value.city;
         isExist.gender = this.userForm.value.gender;
         isExist.hobbies = this.selectedHobbies.join(',');
-        this.http
-          .post(`${environment.apiEndPoint}/student/update`, isExist)
+
+        this.StudentService.updatedata(isExist) //services
           .subscribe((res: any) => {
             if (res.isSuccess) {
               this.getStudentData();
@@ -118,9 +128,8 @@ export class ApiCrudStudentComponent implements OnInit {
 
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete ?')) {
-      this.http
-        .delete(`${environment.apiEndPoint}/student/delete?id=${user.id}`)
-        .subscribe((res: any) => {
+      this.StudentService.Deletedata(user)  //services
+        .subscribe((res: any) => { 
           if (res.isSuccess) {
             this.getStudentData();
           } else {
@@ -131,8 +140,7 @@ export class ApiCrudStudentComponent implements OnInit {
   }
 
   getById(id: number) {
-    this.http
-      .get(`${environment.apiEndPoint}/student/get-student-by-id?id=${id}`)
+    this.StudentService.getById(id)  //services
       .subscribe((res: any) => {
         if (res.isSuccess) {
           const isExist = res.data;

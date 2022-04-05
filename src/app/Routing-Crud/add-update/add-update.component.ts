@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentService } from 'src/app/services/student.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,10 +18,10 @@ export class AddUpdateComponent implements OnInit {
   city: any = ['','Surat','Bhavnagar','Rajkot','Vadodara','Ahmedabad','Mumbai'];
   userHobbies: string[] = ['Cricket','Football','Sports','Reading','Playing','Gaming'];
 
-  constructor(private fb: FormBuilder ,private http: HttpClient ,private route: Router ,private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder ,private http: HttpClient ,private route: Router ,private activatedRoute: ActivatedRoute,private StudentService: StudentService) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
-      this.getdataId(this.id);
+      this.getById(this.id);
     }
     this.userform = this.fb.group({
       id: [''],
@@ -50,8 +51,8 @@ export class AddUpdateComponent implements OnInit {
         ...this.userform.value,
         hobbies: this.selectedHobbies.join(','),
       };
-      this.http
-        .post(`${environment.apiEndPoint}/student/add`, payload)
+
+      this.StudentService.submitData(payload) //services
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.route.navigateByUrl('list');
@@ -69,8 +70,8 @@ export class AddUpdateComponent implements OnInit {
         isExist.gender = this.userform.value.gender;
         isExist.hobbies = this.selectedHobbies.join(',');
         isExist.id = this.id;
-        this.http
-          .post(`${environment.apiEndPoint}/student/update`, isExist)
+       
+        this.StudentService.updatedata(isExist) //services
           .subscribe((res: any) => {
             if (res.isSuccess) {
               this.route.navigateByUrl('list');
@@ -87,7 +88,7 @@ export class AddUpdateComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  getdataId(id: string) {
+  getById(id: string) {
     this.http
       .get(`${environment.apiEndPoint}/student/get-student-by-id?id=${id}`)
       .subscribe((res: any) => {

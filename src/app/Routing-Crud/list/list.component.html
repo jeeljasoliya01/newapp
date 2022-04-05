@@ -1,7 +1,7 @@
 <div class="text-center mt-5">
     <button class="btn btn-outline-success" (click)="addstudent()">ADD</button>
 </div>
-<div class="container">
+<div class="container text-center">
     <div class="table-responsive mt-3">
         <table class="table table-info">
             <thead>
@@ -24,7 +24,7 @@
                     <td>{{ item.gender }}</td>
                     <td>{{ item.hobbies }}</td>
                     <td>
-                        <button class="btn btn-outline-success me-3" (click)="getdataId(item.id)">Edit</button>
+                        <button class="btn btn-outline-success me-3" (click)="getById(item.id)">Edit</button>
                         <button class="btn btn-outline-danger me-3" (click)="deletedata(item.id)">Delete</button>
                     </td>
                 </tr>

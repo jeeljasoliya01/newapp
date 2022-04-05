@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
         }
       });
   }
-  getdataId(id:string){
+  getById(id:string){
     this.route.navigate([`/update/${id}`]);
   }
   deletedata(id:string){

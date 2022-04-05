@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-api-user-template',
@@ -20,7 +21,7 @@ export class ApiUserTemplateComponent implements OnInit {
 
   @ViewChild('userForm', { static: false }) userForm!: NgForm;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private UserService: UserService) { 
  
   }
 
@@ -29,8 +30,9 @@ export class ApiUserTemplateComponent implements OnInit {
   }
 
   getUserData() {
-    this.http
-      .get(`${environment.apiEndPoint}/user/get`)
+
+    this.UserService.getUserData()  //services
+
       .subscribe((res: any) => {
         if (res.isSuccess) {
           this.userData = res.data;
@@ -69,8 +71,8 @@ export class ApiUserTemplateComponent implements OnInit {
       }
       const formData = new FormData();
       Object.keys(payload).map((x) => formData.append(x, payload[x]));
-      this.http
-        .post(`${environment.apiEndPoint}/user/add`, formData)
+     
+      this.UserService.submitData(formData)   //services
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getUserData();
@@ -93,8 +95,8 @@ export class ApiUserTemplateComponent implements OnInit {
         }
         const formData = new FormData();
         Object.keys(isExist).map((x) => formData.append(x, isExist[x]));
-        this.http
-          .post(`${environment.apiEndPoint}/user/update`, formData)
+       
+        this.UserService.updaatedata(formData)   //services
           .subscribe((res: any) => {
             if (res.isSuccess) {
               this.getUserData();
@@ -112,8 +114,9 @@ export class ApiUserTemplateComponent implements OnInit {
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete  ?')) {
       this.userData = this.userData.filter((x) => x.id != user.id);
-      this.http
-        .delete(`${environment.apiEndPoint}/user/delete?id=${user.id}`)
+   
+      this.UserService.deleteUser(user)  //services
+        
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getUserData();
@@ -135,8 +138,9 @@ export class ApiUserTemplateComponent implements OnInit {
   }
   getById(id: number) {
     // const isExist = this.userData.find((x) => x.id == id);
-    this.http
-      .get(`${environment.apiEndPoint}/user/get-user-by-id?id=${id}`)
+   
+    this.UserService.getById(id)  //services
+    
       .subscribe((res: any) => {
         if (res.isSuccess) {
           const isExist = res.data;
