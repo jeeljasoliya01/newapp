@@ -3,10 +3,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav fw-bold">
                 <li class="nav-item">
-                    <a class="nav-link active">Home</a>
+                    <a class="nav-link active" style="cursor:pointer;">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/conditional" >Conditions</a>
+                    <a class="nav-link" routerLink="/conditional">Conditions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/multiplication-table">Table</a>
@@ -27,7 +27,7 @@
                     <a class="nav-link" routerLink="/api-crud-user">Api-user</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="product()">Api-Product</a>
+                    <a class="nav-link" style="cursor:pointer;" (click)="product()">Api-Product</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/api-student-template">Api-student-template</a>
@@ -39,78 +39,78 @@
                     <a class="nav-link" routerLink="/api-user-template">Api-user-template</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/api-token-based-crud">Api-token-crud</a>
+                    <a class="nav-link" routerLink="/list">Routing-Crud</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/list">Routing-Crud</a>
+                    <a class="nav-link" routerLink="/api-token-based-crud">Api-token-crud</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/parent-child">Parent-child</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="logout()">Logout</a>
+                    <a class="nav-link" style="cursor:pointer;" (click)="logout()">Logout</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
+<!-- <div class="container mt-3">
+    <h3 class="text-center">NgModel || NgClass || NgStyle</h3>
+    <label>First Name: </label>
+    <input type="text" name="firstName" [(ngModel)]="firstNameInput" />
 
-<!-- <label>First Name: </label>
-<input type="text" name="firstName" [(ngModel)]="firstNameInput" />
+    <p>Entered name is {{ firstNameInput }}</p>
 
-<p>Entered name is {{ firstNameInput }}</p>
+    <label>Last Name: </label>
+    <input type="text" name="firstName" [(ngModel)]="lastNameInput" />
 
-<label>Last Name: </label>
-<input type="text" name="firstName" [(ngModel)]="lastNameInput" />
-
-<p>Entered name is {{ lastNameInput }}</p>
-
-
-<label>Select Color </label>
-<select [(ngModel)]="selectedColor">
-    <option value="">Select Colors</option>
-    <option value="yellow">Yellow</option>
-    <option value="lightblue">Blue</option>
-    <option value="lightgreen">Green</option>
-    <option value="brown">Brown</option>
-    <option value="lightpink">pink</option>
-</select>
-
-<div style="width: 50px; height: 50px;" [style.background-color]="selectedColor"></div>
-
-<div style="width: 50px; height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: getSelectedColor() }"></div>
-
-<div style="width: 50px;height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: selectedColor }"></div>
-
-<div style="width: 50px;height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: Colors }"></div>
+    <p>Entered name is {{ lastNameInput }}</p>
 
 
-<label>Select Class Color </label>
-<select [(ngModel)]="selectedClassColor">
-    <option value="">Select Colors</option>
-    <option value="bg-yellow">Yellow</option>
-    <option value="bg-lightblue">Blue</option>
-    <option value="bg-lightgreen">Green</option>
-    <option value="bg-brown">Brown</option>
-</select>
+    <label>Select Color </label>
+    <select [(ngModel)]="selectedColor">
+        <option value="">Select Colors</option>
+        <option value="yellow">Yellow</option>
+        <option value="lightblue">Blue</option>
+        <option value="lightgreen">Green</option>
+        <option value="brown">Brown</option>
+        <option value="lightpink">pink</option>
+    </select>
 
-<input type="number" [(ngModel)]="selectedNumber" />
-<div class="w-50px" [ngClass]="selectedClassColor"></div>
+    <div style="width: 50px; height: 50px;" [style.background-color]="selectedColor"></div>
 
-<div class="w-50px"
-    [ngClass]="selectedNumber == 0 ? 'bg-yellow' : selectedNumber == 1 ? 'bg-lightblue' : selectedNumber == 2 ? 'bg-lightgreen' : selectedNumber == 3 ? 'bg-brown' : ''">
-</div>
+    <div style="width: 50px; height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: getSelectedColor() }"></div>
 
-<div class="w-50px"
-    [ngClass]="getClass()">
-</div>
+    <div style="width: 50px;height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: selectedColor }"></div>
 
-<div class="w-50px"
-    [ngClass]="getClassVar">
-</div> 
+    <div style="width: 50px;height: 50px;margin-top: 10px;" [ngStyle]="{ backgroundColor: Colors }"></div>
 
-<button (click)="showValues()">Show Selected Values</button> -->
+
+    <label>Select Class Color </label>
+    <select [(ngModel)]="selectedClassColor">
+        <option value="">Select Colors</option>
+        <option value="bg-yellow">Yellow</option>
+        <option value="bg-lightblue">Blue</option>
+        <option value="bg-lightgreen">Green</option>
+        <option value="bg-brown">Brown</option>
+    </select>
+
+    <input type="number" [(ngModel)]="selectedNumber" />
+    <div class="w-50px" [ngClass]="selectedClassColor"></div>
+
+    <div class="w-50px"
+        [ngClass]="selectedNumber == 0 ? 'bg-yellow' : selectedNumber == 1 ? 'bg-lightblue' : selectedNumber == 2 ? 'bg-lightgreen' : selectedNumber == 3 ? 'bg-brown' : ''">
+    </div>
+
+    <div class="w-50px" [ngClass]="getClass()">
+    </div>
+
+    <div class="w-50px" [ngClass]="getClassVar">
+    </div>
+
+    <button (click)="showValues()">Show Selected Values</button>
+</div> -->
 
 <!-- ============================================== -->
 <!-- <app-conditional></app-conditional> -->

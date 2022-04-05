@@ -40,7 +40,6 @@ import { ApiPrefixInterceptor } from './interceptors/Api-prefix.interceptor';
 import { LoginComponent } from './login/login.component';
 import { ParentComponent } from './parent-child/parent/parent.component';
 import { ChildComponent } from './parent-child/child/child.component';
-
 @NgModule({
   declarations: [
     AppComponent,

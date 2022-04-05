@@ -7,6 +7,7 @@ import { ApiProductTemplateComponent } from './api-product-template/api-product-
 import { ApiStudentTemplateComponent } from './api-student-template/api-student-template.component';
 import { ApiTokenBaseCrudComponent } from './api-token-base-crud/api-token-base-crud.component';
 import { ApiUserTemplateComponent } from './api-user-template/api-user-template.component';
+import { AppComponent } from './app.component';
 import { AuthGuard } from './auth-guard/auth-guard';
 import { ConditionalComponent } from './conditional/conditional.component';
 import { FileSizePipe } from './custom-pipes/file-size.pipe';

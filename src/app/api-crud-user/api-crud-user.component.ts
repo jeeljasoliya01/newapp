@@ -57,7 +57,9 @@ export class ApiCrudUserComponent implements OnInit {
     });
   }
 
-  getUserData() {     
+  getUserData() {    
+    // this.http
+    // .get(`${environment.apiEndPoint}/user/get`) 
     this.UserService.getUserData()  //services
     
       .subscribe((res: any) => {
@@ -94,6 +96,9 @@ export class ApiCrudUserComponent implements OnInit {
       const formData = new FormData();
       Object.keys(payload).map((x) => formData.append(x, payload[x]));
       
+      // this.http
+      // .post(`${environment.apiEndPoint}/user/add`, formData)
+
       this.UserService.submitData(formData)   //services
        
       .subscribe((res: any) => {
@@ -121,6 +126,9 @@ export class ApiCrudUserComponent implements OnInit {
         const formData = new FormData();
         Object.keys(isExist).map((x) => formData.append(x, isExist[x]));
         
+        // this.http
+        // .post(`${environment.apiEndPoint}/user/update`, formData)
+
         this.UserService.updaatedata(formData)   //services
           
         .subscribe((res: any) => {
@@ -149,7 +157,11 @@ export class ApiCrudUserComponent implements OnInit {
   }
 
   deleteUser(user: IUser) {
-    if (confirm('Are you sure you want to delete ?')) {      
+    if (confirm('Are you sure you want to delete ?')) {   
+      
+      // this.http
+      // .delete(`${environment.apiEndPoint}/user/delete?id=${user.id}`)
+
       this.UserService.deleteUser(user)  //services
         
       .subscribe((res: any) => {
@@ -163,6 +175,10 @@ export class ApiCrudUserComponent implements OnInit {
   }
 
   getById(id: number) {  
+    
+    // this.http
+    // .get(`${environment.apiEndPoint}/user/get-user-by-id?id=${id}`)
+
     this.UserService.getById(id)  //services
     
       .subscribe((res: any) => {

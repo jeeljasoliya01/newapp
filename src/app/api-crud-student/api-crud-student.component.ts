@@ -55,6 +55,10 @@ export class ApiCrudStudentComponent implements OnInit {
   }
 
   getStudentData() {
+    
+    // this.http
+    //   .get(`${environment.apiEndPoint}/student/get`)
+   
     this.StudentService.getStudentData() //services
       .subscribe((res: any) => {
         if (res.isSuccess) {
@@ -82,6 +86,10 @@ export class ApiCrudStudentComponent implements OnInit {
         ...this.userForm.value,
         hobbies: this.selectedHobbies.join(','),
       };
+      
+      // this.http
+      // .post(`${environment.apiEndPoint}/student/add`, payload)
+    
       this.StudentService.submitData(payload) //services
         .subscribe((res: any) => {
           if (res.isSuccess) {
@@ -99,6 +107,9 @@ export class ApiCrudStudentComponent implements OnInit {
         isExist.city = this.userForm.value.city;
         isExist.gender = this.userForm.value.gender;
         isExist.hobbies = this.selectedHobbies.join(',');
+
+        // this.http
+        // .post(`${environment.apiEndPoint}/student/update`, isExist)
 
         this.StudentService.updatedata(isExist) //services
           .subscribe((res: any) => {
@@ -128,6 +139,10 @@ export class ApiCrudStudentComponent implements OnInit {
 
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete ?')) {
+
+      // this.http
+      // .delete(`${environment.apiEndPoint}/student/delete?id=${user.id}`)
+
       this.StudentService.Deletedata(user)  //services
         .subscribe((res: any) => { 
           if (res.isSuccess) {
@@ -140,6 +155,10 @@ export class ApiCrudStudentComponent implements OnInit {
   }
 
   getById(id: number) {
+
+    // this.http
+    //   .get(`${environment.apiEndPoint}/student/get-student-by-id?id=${id}`)
+
     this.StudentService.getById(id)  //services
       .subscribe((res: any) => {
         if (res.isSuccess) {

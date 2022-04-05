@@ -45,7 +45,10 @@ export class ApiCrudProductComponent implements OnInit {
 
   
   getProductData() {
-  
+
+    // this.http
+    // .get(`${environment.apiEndPoint}/product/get`)
+    
     this.ProductService.getProductData() //services
 
       .subscribe((res: any) => {
@@ -74,6 +77,9 @@ export class ApiCrudProductComponent implements OnInit {
         ...this.userForm.value,
       };
 
+      // this.http
+      // .post(`${environment.apiEndPoint}/product/add`, payload)
+
        this.ProductService.submitData(payload) //service
         .subscribe((res: any) => {
           if (res.isSuccess) {
@@ -93,6 +99,9 @@ export class ApiCrudProductComponent implements OnInit {
         isExist.clothSize = this.userForm.value.clothSize;
         isExist.inStock = this.userForm.value.inStock;
        
+        // this.http
+        // .post(`${environment.apiEndPoint}/product/update`, isExist)
+
         this.ProductService.updatedata(isExist) //services
           .subscribe((res: any) => {
             if (res.isSuccess) {
@@ -112,6 +121,9 @@ export class ApiCrudProductComponent implements OnInit {
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete  ?')) {
      
+      // this.http
+      // .delete(`${environment.apiEndPoint}/product/delete?id=${user.id}`)
+
       this.ProductService.deleteUser(user)  //services
 
         .subscribe((res: any) => {
@@ -125,6 +137,9 @@ export class ApiCrudProductComponent implements OnInit {
   }
   getById(id: number) {
    
+    // this.http
+    // .get(`${environment.apiEndPoint}/product/get-product-by-id?id=${id}`)
+
     this.ProductService.getById(id) //services
 
       .subscribe((res: any) => {
