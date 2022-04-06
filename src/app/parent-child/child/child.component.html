@@ -3,9 +3,12 @@
 <p>{{childdata}}</p>
 <p>{{childdata1}}</p>
 <p>{{childdata2}}</p>
+<p>{{childdata3}}</p>
 
 <button class="btn btn-primary" (click)="update()">Update Parent Value</button>
 <hr>
 <app-child-one [childdata]="name" (childupdate)="childupdate($event)" (parentupdate)="parentupdate($event)"></app-child-one>
 <app-child-two [childdata1]="name" (childupdate)="childupdate($event)" (childupdate1)="childupdate1($event)" (parentupdate)="parentupdate($event)"></app-child-two>
 <app-child-three [childdata2]="name" (childupdate)="childupdate($event)" (childupdate1)="childupdate1($event)" (childupdate2)="childupdate2($event)" (parentupdate)="parentupdate($event)"></app-child-three>
+<app-child-fourth [childdata3]="name" (childupdate)="childupdate($event)" (childupdate1)="childupdate1($event)" (childupdate2)="childupdate2($event)" (childupdate3)="childupdate3($event)" (parentupdate)="parentupdate($event)" (clearall)="clearall($event)"></app-child-fourth>
+  

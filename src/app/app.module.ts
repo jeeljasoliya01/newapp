@@ -43,6 +43,7 @@ import { ChildComponent } from './parent-child/child/child.component';
 import { ChildOneComponent } from './parent-child/child-one/child-one.component';
 import { ChildTwoComponent } from './parent-child/child-two/child-two.component';
 import { ChildThreeComponent } from './parent-child/child-three/child-three.component';
+import { ChildFourthComponent } from './parent-child/child-fourth/child-fourth.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +83,7 @@ import { ChildThreeComponent } from './parent-child/child-three/child-three.comp
     ChildOneComponent,
     ChildTwoComponent,
     ChildThreeComponent,
+    ChildFourthComponent,
   ],
   imports: [
     BrowserModule,

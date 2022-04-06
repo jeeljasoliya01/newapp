@@ -11,6 +11,7 @@ export class ChildComponent implements OnInit {
   childdata: string = '';
   childdata1: string = '';
   childdata2: string = '';
+  childdata3: string = '';
 
   constructor() {}
 
@@ -20,15 +21,24 @@ export class ChildComponent implements OnInit {
     this.dataUpdate.emit('jeel');
   }
   childupdate($event: any) {
-    this.childdata = $event
+    this.childdata = $event;
   }
   childupdate1($event: any) {
-    this.childdata1 = $event
+    this.childdata1 = $event;
   }
   childupdate2($event: any) {
-    this.childdata2 = $event
+    this.childdata2 = $event;
+  }
+  childupdate3($event: any) {
+    this.childdata3 = $event;
   }
   parentupdate($event: any) {
-    this.dataUpdate.emit($event)
+    this.dataUpdate.emit($event);
+  }
+  clearall($event: any) {
+    this.childdata = '';
+    this.childdata1 = '';
+    this.childdata2 = '';
+    this.childdata3 = '';
   }
 }
