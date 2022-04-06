@@ -28,7 +28,7 @@ export class GoRestComponent implements OnInit {
         {
           name: 'Test',
           email: 'jeel1@gmail.com',
-          gender: 'male',
+          gender: 'female',
           status: 'active',
         },
         {

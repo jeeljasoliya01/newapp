@@ -40,6 +40,9 @@ import { ApiPrefixInterceptor } from './interceptors/Api-prefix.interceptor';
 import { LoginComponent } from './login/login.component';
 import { ParentComponent } from './parent-child/parent/parent.component';
 import { ChildComponent } from './parent-child/child/child.component';
+import { ChildOneComponent } from './parent-child/child-one/child-one.component';
+import { ChildTwoComponent } from './parent-child/child-two/child-two.component';
+import { ChildThreeComponent } from './parent-child/child-three/child-three.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +79,9 @@ import { ChildComponent } from './parent-child/child/child.component';
     LoginComponent,
     ParentComponent,
     ChildComponent,
+    ChildOneComponent,
+    ChildTwoComponent,
+    ChildThreeComponent,
   ],
   imports: [
     BrowserModule,
