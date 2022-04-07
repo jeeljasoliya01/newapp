@@ -2,13 +2,13 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <h3 class="text-center mb-4">Api Crud Token-Base</h3>
-            <form [formGroup]="userform" (ngSubmit)="submitData()">
+            <form [formGroup]="userForm" (ngSubmit)="submitData()">
                 <div class="row">
                     <div class="form-group">
                         <label>Full Name:</label>
                         <input type="text" name="fname" formControlName="fullName" class="form-control">
                         <label
-                            *ngIf="userform.get('fullName') && userform.get('fullName')?.touched && !userform.get('fullName')?.value"
+                            *ngIf="userForm.get('fullName') && userForm.get('fullName')?.touched && !userForm.get('fullName')?.value"
                             class="text-danger">
                             Full name is Required...
                         </label>
@@ -19,12 +19,12 @@
                         <label>E-mail:</label>
                         <input type="email" name="email" formControlName="email" class="form-control">
                         <label
-                            *ngIf="userform.get('email') && userform.get('email')?.touched && !userform.get('email')?.value"
+                            *ngIf="userForm.get('email') && userForm.get('email')?.touched && !userForm.get('email')?.value"
                             class="text-danger">
                             email is Required...
                         </label>
-                        <label *ngIf="userform.get('email')?.errors?.['pattern']" class="text-danger">
-                            {{ userform.get('email')?.errors | json}} &nbsp;
+                        <label *ngIf="userForm.get('email')?.errors?.['pattern']" class="text-danger">
+                            {{ userForm.get('email')?.errors | json}} &nbsp;
                             email is in-valid.
                         </label>
                     </div>
@@ -34,12 +34,12 @@
                         <label>Password:</label>
                         <input type="password" name="password" formControlName="password" class="form-control">
                         <label
-                            *ngIf="userform.get('password') && userform.get('password')?.touched && !userform.get('password')?.value"
+                            *ngIf="userForm.get('password') && userForm.get('password')?.touched && !userForm.get('password')?.value"
                             class="text-danger">
                             Password is required...
                         </label>
-                        <label *ngIf="userform.get('password')?.errors?.['pattern']" class="text-danger">
-                            {{ userform.get('password')?.errors | json}}
+                        <label *ngIf="userForm.get('password')?.errors?.['pattern']" class="text-danger">
+                            {{ userForm.get('password')?.errors | json}}
                             password is in-valid.
                         </label>
                     </div>
@@ -47,7 +47,7 @@
                         <label>Confirm Password:</label>
                         <input type="password" name="cpassword" formControlName="cpassword" class="form-control">
                         <label
-                            *ngIf="userform.get('cpassword') && userform.get('cpassword')?.touched && !userform.get('cpassword')?.value"
+                            *ngIf="userForm.get('cpassword') && userForm.get('cpassword')?.touched && !userForm.get('cpassword')?.value"
                             class="text-danger">
                             Confirm password is required..
                         </label>
@@ -58,18 +58,18 @@
                         <label>Mobile no:</label>
                         <input type="tel" name="phone" formControlName="mobileNumber" class="form-control">
                         <label
-                            *ngIf="userform.get('mobileNumber') && userform.get('mobileNumber')?.touched && !userform.get('mobileNumber')?.value"
+                            *ngIf="userForm.get('mobileNumber') && userForm.get('mobileNumber')?.touched && !userForm.get('mobileNumber')?.value"
                             class="text-danger">
                             mobile number is required..
                         </label>
-                        <label *ngIf="userform.get('mobileNumber')?.errors?.['pattern']" class="text-danger">
-                            {{ userform.get('mobileNumber')?.errors | json}}
+                        <label *ngIf="userForm.get('mobileNumber')?.errors?.['pattern']" class="text-danger">
+                            {{ userForm.get('mobileNumber')?.errors | json}}
                             mobile number is in-valid.
                         </label>
                     </div>
                 </div>
                 <div class="form-group text-center mt-4">
-                    <button type="submit" class="btn btn-success" [disabled]="!userform.valid">Submit</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
                 </div>
             </form>
         </div>

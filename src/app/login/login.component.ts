@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this.http
-      .post(`${environment.irispoint}/User/LoginAuthenticate`, {
+      .post(`${environment.irisApi}/User/LoginAuthenticate`, {
         email: this.loginForm.get('username')?.value,
         password: this.loginForm.get('password')?.value,
       })

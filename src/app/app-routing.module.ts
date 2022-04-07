@@ -21,6 +21,7 @@ import { PipesComponent } from './pipes/pipes.component';
 import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.component';
 import { DeleteComponent } from './Routing-Crud/delete/delete.component';
 import { ListComponent } from './Routing-Crud/list/list.component';
+import { ParentrxjsComponent } from './rxjs-example/parentrxjs/parentrxjs.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,13 @@ const routes: Routes = [
   },
   {
     path: 'parent-child',
+    canActivate:[AuthGuard],
     component: ParentComponent,
+  },
+  {
+    path: 'Rxjsparent-child',
+    canActivate:[AuthGuard],
+    component: ParentrxjsComponent,
   },
   {
     path:'irispoint',

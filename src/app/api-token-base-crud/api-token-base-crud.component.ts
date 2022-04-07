@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { isSubscription } from 'rxjs/internal/Subscription';
 import { environment } from 'src/environments/environment';
+import { TokenUserService } from '../services/token-user.service';
 
 @Component({
   selector: 'app-api-token-base-crud',
@@ -10,19 +10,20 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./api-token-base-crud.component.css'],
 })
 export class ApiTokenBaseCrudComponent implements OnInit {
-  userform: FormGroup;
+
+  userForm: FormGroup;
   userData: Iuser[] = [];
   loginToken: string = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.userform = this.fb.group({
+  constructor(private fb: FormBuilder, private http: HttpClient, private TokenUserService: TokenUserService) {
+    this.userForm = this.fb.group({
       id: [''],
-      rolid: [''],
-      fullName: ['',[Validators.required]],
-      email: ['',[Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
-      password: ['',[Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8}$')]],
+      roleId: [''],
+      fullName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8}$')]],
       cpassword: ['', [Validators.required]],
-      mobileNumber: ['',[Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+      mobileNumber: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
     });
   }
   async ngOnInit() {
@@ -34,7 +35,7 @@ export class ApiTokenBaseCrudComponent implements OnInit {
   async loginUser() {
     await new Promise((resolve) => {
       this.http
-        .post(`${environment.irispoint}/User/LoginAuthenticate`, {
+        .post(`${environment.irisApi}/User/LoginAuthenticate`, {
           email: 'admin@mail.com',
           password: 'Test@123',
         })
@@ -48,12 +49,13 @@ export class ApiTokenBaseCrudComponent implements OnInit {
   }
 
   getAllUser() {
-    this.http
-      .get(`${environment.irispoint}/User/GetAllUsers`, {
-        // headers: {
-        //   Authorization: `Bearer ${this.loginToken}`,
-        // },
-      })
+    this.TokenUserService.getAllUser() //services
+      // this.http
+      //   .get(`${environment.irisApi}/User/GetAllUsers`, {
+      //     headers: {
+      //   Authorization: `Bearer ${this.loginToken}`,
+      // },
+      // })
       .subscribe((res: any) => {
         if (res.isSuccess) {
           this.userData = res.responseData;
@@ -65,7 +67,7 @@ export class ApiTokenBaseCrudComponent implements OnInit {
   postUser() {
     this.http
       .post(
-        `${environment.irispoint}/User/CreateUser`,
+        `${environment.irisApi}/User/CreateUser`,
         {
           email: 'jeel@gmail.com',
           fullName: 'Jeel',
@@ -90,20 +92,24 @@ export class ApiTokenBaseCrudComponent implements OnInit {
 
   submitData() {
     // console.log(this.userData);
-    if (!this.userform.valid) {
+    if (!this.userForm.valid) {
       return;
     }
-    if (!this.userform.value.id) {
+    if (!this.userForm.value.id) {
       const payload = {
-        ...this.userform.value,
+        ...this.userForm.value,
         roleId: 2,
+        profileImageBase64: '',
+        userRole: [],
       };
-      this.http
-        .post(`${environment.irispoint}/User/CreateUser`, payload, {
-          // headers: {
-          //   Authorization: `Bearer ${this.loginToken}`
-          // }
-        })
+      // this.http
+      //   .post(`${environment.irisApi}/User/CreateUser`, payload, {
+      // headers: {
+      //   Authorization: `Bearer ${this.loginToken}`
+      // }
+      // })
+
+      this.TokenUserService.postUser(payload) //services
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getAllUser();
@@ -112,20 +118,23 @@ export class ApiTokenBaseCrudComponent implements OnInit {
           }
         });
     } else {
-      const isExist = this.userData.find((x) => x.id == this.userform.value.id);
+      const isExist = this.userData.find((x) => x.id == this.userForm.value.id) as any;
       if (isExist) {
-        isExist.fullName = this.userform.value.fullName;
-        isExist.email = this.userform.value.email;
-        isExist.password = this.userform.value.passWord;
-        isExist.cpassword = this.userform.value.cpword;
-        isExist.mobileNumber = this.userform.value.mobileNumber;
-        isExist.roleId = this.userform.value.roleId;
-        this.http
-          .post(`${environment.irispoint}/User/UpdateUser`, isExist, {
-            // headers: {
-            //   Authorization: `Bearer ${this.loginToken}`
-            // }
-          })
+        isExist.fullName = this.userForm.value.fullName;
+        isExist.email = this.userForm.value.email;
+        isExist.password = this.userForm.value.passWord;
+        isExist.cpassword = this.userForm.value.cpword;
+        isExist.mobileNumber = this.userForm.value.mobileNumber;
+        isExist.roleId = this.userForm.value.roleId;
+        isExist.userRole = [];
+        // this.http
+        //   .post(`${environment.irisApi}/User/UpdateUser`, isExist, {
+        // headers: {
+        //   Authorization: `Bearer ${this.loginToken}`
+        // }
+        // })
+
+        this.TokenUserService.Updateuser(isExist) //services
           .subscribe((res: any) => {
             if (res.isSuccess) {
               this.getAllUser();
@@ -137,18 +146,21 @@ export class ApiTokenBaseCrudComponent implements OnInit {
         alert('Data not Found');
       }
     }
-    this.userform.reset();
+    this.userForm.reset();
   }
 
   deleteUser(user: Iuser) {
     if (confirm('Are you sure you want to delete ?')) {
       this.userData = this.userData.filter((x) => x.id != user.id);
-      this.http
-        .delete(`${environment.irispoint}/User/DeleteUser/${user.id}`, {
-          // headers: {
-          //   Authorization: `Bearer ${this.loginToken}`
-          // }
-        })
+
+      // this.http
+      //   .delete(`${environment.irisApi}/User/DeleteUser/${user.id}`, {
+      // headers: {
+      //   Authorization: `Bearer ${this.loginToken}`
+      // }
+      // })
+
+      this.TokenUserService.deleteuser(user) //services
         .subscribe((res: any) => {
           if (res.isSuccess) {
             this.getAllUser();
@@ -161,17 +173,20 @@ export class ApiTokenBaseCrudComponent implements OnInit {
 
   getById(id: number) {
     // const isExist = this.userData.find((x) => x.id == id);
-    this.http
-      .get(`${environment.irispoint}/user/GetUser/${id}`, {
-        // headers: {
-        //   Authorization: `Bearer ${this.loginToken}`
-        // }
-      })
+
+    // this.http
+    //   .get(`${environment.irisApi}/user/GetUser/${id}`, {
+    // headers: {
+    //   Authorization: `Bearer ${this.loginToken}`
+    // }
+    // })
+
+    this.TokenUserService.getbyId(id) //services
       .subscribe((res: any) => {
         if (res.isSuccess) {
           const isExist = res.responseData;
           if (isExist) {
-            this.userform.patchValue({
+            this.userForm.patchValue({
               id: isExist.id,
               fullName: isExist.fullName,
               email: isExist.email,
