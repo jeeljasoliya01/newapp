@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
-  selector: 'app-childrxjs1',
-  templateUrl: './childrxjs1.component.html',
-  styleUrls: ['./childrxjs1.component.css']
+  selector: 'app-childrxjs2',
+  templateUrl: './childrxjs2.component.html',
+  styleUrls: ['./childrxjs2.component.css']
 })
-export class Childrxjs1Component implements OnInit {
-  onestring: string = ''
+export class Childrxjs2Component implements OnInit {
+
+  secondstring: string = ''
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.sharedService.childData1.subscribe(data => {
-      this.onestring = data
+    this.sharedService.childData2.subscribe(data => {
+      this.secondstring = data
     })
   }
   changeParent() {
@@ -21,5 +22,7 @@ export class Childrxjs1Component implements OnInit {
   changeChild() {
     this.sharedService.updateChild("Data passed using shared service for child : " + Math.random())
   }
-
+  changeChild1() {
+    this.sharedService.updateChild1("Data passed using shared service for child one : " + Math.random())
+  }
 }

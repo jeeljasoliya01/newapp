@@ -22,7 +22,7 @@ export class ApiCrudStudentComponent implements OnInit {
     'Mumbai',
   ];
   selectedHobbies: string[] = [];
-  userHobbies: string[] = [
+  userHobbies : string[] = [
     'cricket',
     'footboll',
     'Reading',
@@ -135,7 +135,7 @@ export class ApiCrudStudentComponent implements OnInit {
     } else {
       this.selectedHobbies.push($event.target.value);
     }
-  }
+  }  
 
   deleteUser(user: IUser) {
     if (confirm('Are you sure you want to delete ?')) {

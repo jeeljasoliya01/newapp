@@ -47,6 +47,11 @@ import { ChildFourthComponent } from './parent-child/child-fourth/child-fourth.c
 import { ParentrxjsComponent } from './rxjs-example/parentrxjs/parentrxjs.component';
 import { ChildrxjsComponent } from './rxjs-example/childrxjs/childrxjs.component';
 import { Childrxjs1Component } from './rxjs-example/childrxjs1/childrxjs1.component';
+import { Childrxjs2Component } from './rxjs-example/childrxjs2/childrxjs2.component';
+import { Childrxjs3Component } from './rxjs-example/childrxjs3/childrxjs3.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +95,8 @@ import { Childrxjs1Component } from './rxjs-example/childrxjs1/childrxjs1.compon
     ParentrxjsComponent,
     ChildrxjsComponent,
     Childrxjs1Component,
+    Childrxjs2Component,
+    Childrxjs3Component
   ],
   imports: [
     BrowserModule,
