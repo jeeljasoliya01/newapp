@@ -23,7 +23,7 @@ export class SharedService {
     updateChild(messchildBehaviousDataage: string) {
         this.childBehaviousData.next(messchildBehaviousDataage)
     }
-    
+
     updateChild1(messchildBehaviousDataage: string) {
         this.childBehaviousData1.next(messchildBehaviousDataage)
     }
@@ -39,6 +39,6 @@ export class SharedService {
     updateParent(messchildBehaviousDataage: string) {
         this.parentBehaviousData.next(messchildBehaviousDataage)
     }
-    
+
 
 }

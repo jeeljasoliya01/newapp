@@ -27,5 +27,11 @@ export class Childrxjs3Component implements OnInit {
   changeChild2() {
     this.sharedService.updateChild2("Data passed using shared service for child one : " + Math.random())
   }
+  clearall($event:any){
+    this.sharedService.updateParent('');
+    this.sharedService.updateChild('');
+    this.sharedService.updateChild1('');
+    this.sharedService.updateChild2('');
+  } 
 
 }

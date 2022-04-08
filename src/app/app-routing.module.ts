@@ -16,6 +16,9 @@ import { FormsReactiveComponent } from './forms-reactive/forms-reactive.componen
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
 import { LoginComponent } from './login/login.component';
 import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
+import { AccordionComponent } from './ng-bootstrap/accordion/accordion.component';
+import { CarouselComponent } from './ng-bootstrap/carousel/carousel.component';
+import { ModelCrudComponent } from './ng-bootstrap/model-crud/model-crud.component';
 import { ParentComponent } from './parent-child/parent/parent.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.component';
@@ -44,9 +47,24 @@ const routes: Routes = [
     component: ParentComponent,
   },
   {
+    path: 'accordion',
+    canActivate:[AuthGuard],
+    component: AccordionComponent,
+  },
+  {
+    path: 'carousel',
+    canActivate:[AuthGuard],
+    component: CarouselComponent,
+  },
+  {
     path: 'Rxjsparent-child',
     canActivate:[AuthGuard],
     component: ParentrxjsComponent,
+  },
+  {
+    path: 'model-crud',
+    canActivate:[AuthGuard],
+    component: ModelCrudComponent,
   },
   {
     path:'irispoint',

@@ -49,7 +49,10 @@ import { ChildrxjsComponent } from './rxjs-example/childrxjs/childrxjs.component
 import { Childrxjs1Component } from './rxjs-example/childrxjs1/childrxjs1.component';
 import { Childrxjs2Component } from './rxjs-example/childrxjs2/childrxjs2.component';
 import { Childrxjs3Component } from './rxjs-example/childrxjs3/childrxjs3.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AccordionComponent } from './ng-bootstrap/accordion/accordion.component';
+import { CarouselComponent } from './ng-bootstrap/carousel/carousel.component';
+import { ModelCrudComponent } from './ng-bootstrap/model-crud/model-crud.component';
 
 
 @NgModule({
@@ -96,7 +99,10 @@ import { Childrxjs3Component } from './rxjs-example/childrxjs3/childrxjs3.compon
     ChildrxjsComponent,
     Childrxjs1Component,
     Childrxjs2Component,
-    Childrxjs3Component
+    Childrxjs3Component,
+    AccordionComponent,
+    CarouselComponent,
+    ModelCrudComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +110,8 @@ import { Childrxjs3Component } from './rxjs-example/childrxjs3/childrxjs3.compon
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    NgbModule
   ],
   providers: [ 
     { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true }

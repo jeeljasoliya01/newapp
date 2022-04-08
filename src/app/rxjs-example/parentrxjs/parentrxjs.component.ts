@@ -15,7 +15,6 @@ export class ParentrxjsComponent implements OnInit {
       this.updateSTring = data
     })
   }
-
   changeChild(){
     this.SharedService.updateChild("Data passed using shared service for child : " + Math.random())
   }
