@@ -27,7 +27,6 @@ export class ApiStudentTemplateComponent implements OnInit {
   }
 
   getStudentData() {
-   
     this.StudentService.getStudentData() //services
 
       .subscribe((res: any) => {

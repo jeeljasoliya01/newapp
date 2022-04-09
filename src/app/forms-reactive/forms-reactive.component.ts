@@ -17,10 +17,10 @@ export class FormsReactiveComponent implements OnInit {
       id: [''],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      email: ['', [Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),Validators.email]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'), Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       Age: ['', Validators.required],
-      password: ['', [Validators.required,Validators.maxLength(8)]],
+      password: ['', [Validators.required, Validators.maxLength(8)]],
       gender: [''],
     });
   }
@@ -28,18 +28,23 @@ export class FormsReactiveComponent implements OnInit {
   ngOnInit(): void {
     this.selectedHobbies = ['travaling'];
   }
+
   submitData() {
     console.log(this.userData);
-    if (!this.userForm.valid) {
+    if (!this.userForm.valid)
+    {
       return;
     }
-    if (!this.userForm.value.id) {
+    if (!this.userForm.value.id)
+    {
       this.userData.push({
         ...this.userForm.value,
         id: this.userData.length + 1,
         hobbies: this.selectedHobbies.join(','),
       });
-    } else {
+    } 
+    else
+    {
       const isExist = this.userData.find((x) => x.id == this.userForm.value.id);
       if (isExist) {
         isExist.firstname = this.userForm.value.firstname;

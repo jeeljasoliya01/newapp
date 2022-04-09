@@ -34,6 +34,7 @@
                         </label>
                         <label *ngIf="userForm.get('email') && userForm.get('email')?.errors?.['pattern']"
                             class="text-danger">
+                            
                             E-mail is invalid
                         </label>
                     </div>
@@ -134,7 +135,7 @@
                         <button class="btn btn-danger me-2" (click)="deleteUser(item)">Delete</button>
                     </td>
                 </tr>
-            </tbody>
+            </tbody>    
         </table>
     </div>
 </div>

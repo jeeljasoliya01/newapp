@@ -53,7 +53,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccordionComponent } from './ng-bootstrap/accordion/accordion.component';
 import { CarouselComponent } from './ng-bootstrap/carousel/carousel.component';
 import { ModelCrudComponent } from './ng-bootstrap/model-crud/model-crud.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { CalendarModule } from 'primeng/calendar';
+import { CalendarComponent } from './prime-ng/calendar/calendar.component';
+import { ChipsModule } from 'primeng/chips';
 
 @NgModule({
   declarations: [
@@ -103,6 +106,8 @@ import { ModelCrudComponent } from './ng-bootstrap/model-crud/model-crud.compone
     AccordionComponent,
     CarouselComponent,
     ModelCrudComponent,
+    CalendarComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -111,9 +116,12 @@ import { ModelCrudComponent } from './ng-bootstrap/model-crud/model-crud.compone
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    ChipsModule,
+    CalendarModule,
+    BrowserAnimationsModule,
   ],
-  providers: [ 
+  providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

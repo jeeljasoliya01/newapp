@@ -36,9 +36,11 @@ export class ModelCrudComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result: any) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason: any) => {
+      this.userForm.reset();
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -48,6 +50,7 @@ export class ModelCrudComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   submitData() {
     console.log(this.userData);
     if (!this.userForm.valid) {

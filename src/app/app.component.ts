@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -50,7 +51,7 @@ export class AppComponent {
     debugger;
   }
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private primengconfig: PrimeNGConfig) {}
 
   product() {
     this.route.navigate(['/api-crud-product']);

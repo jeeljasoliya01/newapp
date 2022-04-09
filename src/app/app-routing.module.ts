@@ -7,10 +7,8 @@ import { ApiProductTemplateComponent } from './api-product-template/api-product-
 import { ApiStudentTemplateComponent } from './api-student-template/api-student-template.component';
 import { ApiTokenBaseCrudComponent } from './api-token-base-crud/api-token-base-crud.component';
 import { ApiUserTemplateComponent } from './api-user-template/api-user-template.component';
-import { AppComponent } from './app.component';
 import { AuthGuard } from './auth-guard/auth-guard';
 import { ConditionalComponent } from './conditional/conditional.component';
-import { FileSizePipe } from './custom-pipes/file-size.pipe';
 import { ErrorsComponent } from './errors/errors.component';
 import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
@@ -21,6 +19,7 @@ import { CarouselComponent } from './ng-bootstrap/carousel/carousel.component';
 import { ModelCrudComponent } from './ng-bootstrap/model-crud/model-crud.component';
 import { ParentComponent } from './parent-child/parent/parent.component';
 import { PipesComponent } from './pipes/pipes.component';
+import { CalendarComponent } from './prime-ng/calendar/calendar.component';
 import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.component';
 import { DeleteComponent } from './Routing-Crud/delete/delete.component';
 import { ListComponent } from './Routing-Crud/list/list.component';
@@ -60,6 +59,11 @@ const routes: Routes = [
     path: 'Rxjsparent-child',
     canActivate:[AuthGuard],
     component: ParentrxjsComponent,
+  },
+  {
+    path: 'calendar',
+    canActivate:[AuthGuard],
+    component: CalendarComponent,
   },
   {
     path: 'model-crud',
