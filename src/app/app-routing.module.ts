@@ -20,144 +20,140 @@ import { ModelCrudComponent } from './ng-bootstrap/model-crud/model-crud.compone
 import { ParentComponent } from './parent-child/parent/parent.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { CalendarComponent } from './prime-ng/calendar/calendar.component';
+import { DocksComponent } from './prime-ng/docks/docks.component';
 import { AddUpdateComponent } from './Routing-Crud/add-update/add-update.component';
 import { DeleteComponent } from './Routing-Crud/delete/delete.component';
 import { ListComponent } from './Routing-Crud/list/list.component';
 import { ParentrxjsComponent } from './rxjs-example/parentrxjs/parentrxjs.component';
+import { EmptyComponent } from './shared/layout/empty/empty.component';
+import { FullComponent } from './shared/layout/full/full.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'conditional',
+    redirectTo: 'login',
   },
   {
-    path:'login',
-    component:LoginComponent
+    path: '',
+    component: EmptyComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+    ]
   },
   {
-    path:'api-token-base-crud',
-    canActivate:[AuthGuard],
-    component:ApiTokenBaseCrudComponent
+    path: 'app',
+    component: FullComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { 
+        path: 'api-token-base-crud',
+        component: ApiTokenBaseCrudComponent
+      },
+      {
+        path: 'parent-child',
+        component: ParentComponent,
+      },
+      {
+        path: 'accordion',
+        component: AccordionComponent,
+      },
+      {
+        path: 'carousel',
+        component: CarouselComponent,
+      },
+      {
+        path: 'Rxjsparent-child',
+        component: ParentrxjsComponent,
+      },
+      {
+        path: 'calendar',
+        component: CalendarComponent,
+      },
+      {
+        path: 'model-crud',
+        component: ModelCrudComponent,
+      },
+      {
+        path: 'irispoint',
+        component: ApiTokenBaseCrudComponent,
+      },
+      {
+        path: 'conditional',
+        component: ConditionalComponent,
+      },
+      {
+        path: 'multiplication-table',
+        component: MultiplicationTableComponent,
+      },
+      {
+        path: 'Pipes',
+        component: PipesComponent,
+      },
+      {
+        path: 'forms-reactive',
+        component: FormsReactiveComponent,
+      },
+      {
+        path: 'forms-template',
+        component: FormsTemplateComponent,
+      },
+      {
+        path: 'api-crud-student',
+        component: ApiCrudStudentComponent,
+      },
+      {
+        path: 'api-crud-user',
+        component: ApiCrudUserComponent,
+      },
+      {
+        path: 'api-student-template',
+        component: ApiStudentTemplateComponent,
+      },
+      {
+        path: 'api-product-template',
+        component: ApiProductTemplateComponent,
+      },
+      {
+        path: 'api-user-template',
+        component: ApiUserTemplateComponent,
+      },
+      {
+        path: 'api-token-based-crud',
+        component: ApiTokenBaseCrudComponent,
+      },
+      {
+        path: 'api-crud-product',
+        component: ApiCrudProductComponent,
+      },
+      {
+        path: 'docks',
+        component: DocksComponent,
+      },
+      {
+        path: 'list',
+        component: ListComponent,
+      },
+      {
+        path: 'add',
+        component: AddUpdateComponent,
+      },
+      {
+        path: 'update/:id',
+        component: AddUpdateComponent,
+      },
+      {
+        path: 'delete/:id',
+        component: DeleteComponent,
+      },
+    ]
   },
   {
-    path: 'parent-child',
-    canActivate:[AuthGuard],
-    component: ParentComponent,
-  },
-  {
-    path: 'accordion',
-    canActivate:[AuthGuard],
-    component: AccordionComponent,
-  },
-  {
-    path: 'carousel',
-    canActivate:[AuthGuard],
-    component: CarouselComponent,
-  },
-  {
-    path: 'Rxjsparent-child',
-    canActivate:[AuthGuard],
-    component: ParentrxjsComponent,
-  },
-  {
-    path: 'calendar',
-    canActivate:[AuthGuard],
-    component: CalendarComponent,
-  },
-  {
-    path: 'model-crud',
-    canActivate:[AuthGuard],
-    component: ModelCrudComponent,
-  },
-  {
-    path:'irispoint',
-    canActivate:[AuthGuard],
-    component:ApiTokenBaseCrudComponent
-  },
-  {
-    path:'conditional',
-    canActivate:[AuthGuard],
-    component:ConditionalComponent
-  },
-  {
-    path:'multiplication-table',
-    canActivate:[AuthGuard],
-    component:MultiplicationTableComponent
-  },
-  {
-    path:'Pipes',
-    canActivate:[AuthGuard],
-    component:PipesComponent
-  },
-  {
-    path:'forms-reactive',
-    canActivate:[AuthGuard],
-    component:FormsReactiveComponent
-  },
-  {
-    path:'forms-template',
-    canActivate:[AuthGuard],
-    component:FormsTemplateComponent
-  },
-  {
-    path:'api-crud-student',
-    canActivate:[AuthGuard],
-    component:ApiCrudStudentComponent
-  },
-  {
-    path:'api-crud-user',
-    canActivate:[AuthGuard],
-    component:ApiCrudUserComponent
-  },
-  {
-    path:'api-student-template',
-    canActivate:[AuthGuard],
-    component:ApiStudentTemplateComponent
-  },
-  {
-    path:'api-product-template',
-    canActivate:[AuthGuard],
-    component:ApiProductTemplateComponent
-  },
-  {
-    path:'api-user-template',
-    canActivate:[AuthGuard],
-    component:ApiUserTemplateComponent
-  },
-  {
-    path:'api-token-based-crud',
-    canActivate:[AuthGuard],
-    component:ApiTokenBaseCrudComponent
-  },
-  {
-    path:'api-crud-product',
-    canActivate:[AuthGuard],
-    component:ApiCrudProductComponent
-  },
-  {
-    path:'list',
-    canActivate:[AuthGuard],
-    component:ListComponent
-  },
-  {
-    path:'add',
-    canActivate:[AuthGuard],
-    component:AddUpdateComponent
-  },
-  {
-    path:'update/:id',
-    canActivate:[AuthGuard],
-    component:AddUpdateComponent
-  },
-  {
-    path:'delete/:id',
-    canActivate:[AuthGuard],
-    component:DeleteComponent
-  },
-  {
-    path:'**',
-    component:ErrorsComponent
+    path: '**',
+    component: ErrorsComponent
   }
 ];
 

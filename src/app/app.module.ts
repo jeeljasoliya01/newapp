@@ -57,6 +57,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { CalendarModule } from 'primeng/calendar';
 import { CalendarComponent } from './prime-ng/calendar/calendar.component';
 import { ChipsModule } from 'primeng/chips';
+import { DockModule } from 'primeng/dock';
+import { DocksComponent } from './prime-ng/docks/docks.component';
+import { SharedModule } from './shared/shared.module';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+
 
 @NgModule({
   declarations: [
@@ -107,7 +113,7 @@ import { ChipsModule } from 'primeng/chips';
     CarouselComponent,
     ModelCrudComponent,
     CalendarComponent,
-   
+    DocksComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +125,11 @@ import { ChipsModule } from 'primeng/chips';
     NgbModule,
     ChipsModule,
     CalendarModule,
+    DockModule,
     BrowserAnimationsModule,
+    SharedModule,
+    ButtonModule,
+    SidebarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true }

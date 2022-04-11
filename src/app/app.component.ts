@@ -27,31 +27,31 @@ export class AppComponent {
     return this.selectedNumber == 0
       ? 'bg-yellow'
       : this.selectedNumber == 1
-      ? 'bg-lightblue'
-      : this.selectedNumber == 2
-      ? 'bg-lightgreen'
-      : this.selectedNumber == 3
-      ? 'bg-brown'
-      : '';
+        ? 'bg-lightblue'
+        : this.selectedNumber == 2
+          ? 'bg-lightgreen'
+          : this.selectedNumber == 3
+            ? 'bg-brown'
+            : '';
   }
 
   get getClassVar(): string {
     return this.selectedNumber == 0
       ? 'bg-yellow'
       : this.selectedNumber == 1
-      ? 'bg-lightblue'
-      : this.selectedNumber == 2
-      ? 'bg-lightgreen'
-      : this.selectedNumber == 3
-      ? 'bg-brown'
-      : '';
+        ? 'bg-lightblue'
+        : this.selectedNumber == 2
+          ? 'bg-lightgreen'
+          : this.selectedNumber == 3
+            ? 'bg-brown'
+            : '';
   }
 
   showValues() {
     debugger;
   }
-
-  constructor(private route: Router, private primengconfig: PrimeNGConfig) {}
+  
+  constructor(private route: Router) { }
 
   product() {
     this.route.navigate(['/api-crud-product']);
