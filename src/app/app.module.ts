@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ConditionalComponent } from './conditional/conditional.component';
-import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { ShortNumberPipe } from './custom-pipes/short-number.pipe';
 import { FileSizePipe } from './custom-pipes/file-size.pipe';
@@ -20,7 +18,6 @@ import { HighlightsDirective } from './custom-directive/highlights.directive';
 import { ColorMethodDirective } from './custom-directive/color-method.directive';
 import { TestDirective } from './custom-directive/test.directive';
 import { ToogleDirective } from './custom-directive/toogle.directive';
-import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiCrudStudentComponent } from './api-crud-student/api-crud-student.component';
@@ -62,13 +59,12 @@ import { DocksComponent } from './prime-ng/docks/docks.component';
 import { SharedModule } from './shared/shared.module';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConditionalComponent,
-    MultiplicationTableComponent,
     PipesComponent,
     ShortNumberPipe,
     FileSizePipe,
@@ -83,7 +79,6 @@ import { SidebarModule } from 'primeng/sidebar';
     ColorMethodDirective,
     TestDirective,
     ToogleDirective,
-    FormsReactiveComponent,
     FormsTemplateComponent,
     ApiCrudStudentComponent,
     ApiCrudProductComponent,
@@ -114,6 +109,7 @@ import { SidebarModule } from 'primeng/sidebar';
     ModelCrudComponent,
     CalendarComponent,
     DocksComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

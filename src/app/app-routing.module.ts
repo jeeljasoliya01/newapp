@@ -12,6 +12,7 @@ import { ConditionalComponent } from './conditional/conditional.component';
 import { ErrorsComponent } from './errors/errors.component';
 import { FormsReactiveComponent } from './forms-reactive/forms-reactive.component';
 import { FormsTemplateComponent } from './forms-template/forms-template.component';
+import { HighchartsComponent } from './highcharts/highcharts.component';
 import { LoginComponent } from './login/login.component';
 import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
 import { AccordionComponent } from './ng-bootstrap/accordion/accordion.component';
@@ -27,6 +28,7 @@ import { ListComponent } from './Routing-Crud/list/list.component';
 import { ParentrxjsComponent } from './rxjs-example/parentrxjs/parentrxjs.component';
 import { EmptyComponent } from './shared/layout/empty/empty.component';
 import { FullComponent } from './shared/layout/full/full.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
   {
@@ -46,10 +48,26 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    component: FullComponent,
+    component: SidebarComponent,
     canActivate: [AuthGuard],
     children: [
-      { 
+      {
+        path: 'conditional',
+        loadChildren: () => import('./conditional/conditional.module').then(x => x.ConditionalModule)
+      },
+      {
+        path: 'multiplication-table',
+        loadChildren: () => import('./multiplication-table/multiplication-table.module').then(x => x.MultiplicationTableModule)
+      },
+      {
+        path: 'highcharts',
+        loadChildren: () => import('./highcharts/highcharts.module').then(x => x.HighchartsModule)
+      },
+      {
+        path: 'forms-reactive',
+        loadChildren: () => import('./forms-reactive/forms-reactive.module').then(x => x.FormsReactiveModule)
+      },
+      {
         path: 'api-token-base-crud',
         component: ApiTokenBaseCrudComponent
       },
@@ -82,21 +100,10 @@ const routes: Routes = [
         component: ApiTokenBaseCrudComponent,
       },
       {
-        path: 'conditional',
-        component: ConditionalComponent,
-      },
-      {
-        path: 'multiplication-table',
-        component: MultiplicationTableComponent,
-      },
-      {
         path: 'Pipes',
         component: PipesComponent,
       },
-      {
-        path: 'forms-reactive',
-        component: FormsReactiveComponent,
-      },
+
       {
         path: 'forms-template',
         component: FormsTemplateComponent,

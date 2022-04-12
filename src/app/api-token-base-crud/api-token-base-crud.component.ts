@@ -99,8 +99,12 @@ export class ApiTokenBaseCrudComponent implements OnInit {
       const payload = {
         ...this.userForm.value,
         roleId: 2,
+        companyList: [],
         profileImageBase64: '',
-        userRole: [],
+        isActive: false,
+        employeeId: 0,
+        userRole:[],
+        notificationTypeList:''
       };
       // this.http
       //   .post(`${environment.irisApi}/User/CreateUser`, payload, {
