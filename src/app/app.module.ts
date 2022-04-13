@@ -60,6 +60,8 @@ import { SharedModule } from './shared/shared.module';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { DataTablesModule } from "angular-datatables";
+import { DatatablesComponent } from './datatables/datatables.component';
 
 
 @NgModule({
@@ -110,6 +112,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     CalendarComponent,
     DocksComponent,
     SidebarComponent,
+    DatatablesComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,7 +128,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     BrowserAnimationsModule,
     SharedModule,
     ButtonModule,
-    SidebarModule
+    SidebarModule,
+    DataTablesModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true }
