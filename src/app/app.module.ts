@@ -62,6 +62,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DataTablesModule } from "angular-datatables";
 import { DatatablesComponent } from './datatables/datatables.component';
+import { CutomTablesComponent } from './datatables/cutom-tables/cutom-tables.component';
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { DatatablesComponent } from './datatables/datatables.component';
     DocksComponent,
     SidebarComponent,
     DatatablesComponent,
+    CutomTablesComponent,
   ],
   imports: [
     BrowserModule,
