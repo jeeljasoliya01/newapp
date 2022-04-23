@@ -14,8 +14,7 @@
                 <div class="col mt-3">
                     <div class="form-group">
                         <label class="fw-bold"> Product Name</label>
-                        <input type="text" class="form-control" name="productName" #productName="ngModel" ngModel
-                            required />
+                        <input type="text" class="form-control" name="productName" #productName="ngModel" ngModel required />
                         <label *ngIf="productName && productName?.touched && !productName?.value" class="text-danger">
                             Product Name is required
                         </label>
@@ -26,10 +25,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label class="fw-bold">Description</label>
-                            <input type="text" class="form-control" name="description" #description="ngModel" ngModel
-                                required />
-                            <label *ngIf="description && description?.touched && !description?.value"
-                                class="text-danger">
+                            <input type="text" class="form-control" name="description" #description="ngModel" ngModel required />
+                            <label *ngIf="description && description?.touched && !description?.value" class="text-danger">
                                 Description is required
                             </label>
                         </div>
@@ -48,8 +45,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label class="fw-bold"> Cloth Size</label>
-                            <select id="size" class="form-select" #clothSize="ngModel" ngModel name="clothSize"
-                                required>
+                            <select id="size" class="form-select" #clothSize="ngModel" ngModel name="clothSize" required>
                                 <option value="s">S</option>
                                 <option value="m">M</option>
                                 <option value="l">L</option>
@@ -59,8 +55,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="radio"><br>
-                                In Stock :
+                        <div class="radio"><br> In Stock :
                             <label *ngFor="let inStock of Stock">
                                 <input type="radio" name="inStock" #inStock="ngModel" ngModel [value]="inStock" required>
                                 {{ inStock }} &nbsp;
