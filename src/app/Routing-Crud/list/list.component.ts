@@ -9,14 +9,15 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
+ 
   userdata: Iuser[] = [];
-  constructor(private route: Router,private http: HttpClient) {}
+  constructor(private route: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getStudentData();
   }
 
-  addstudent(){
+  addstudent() {
     this.route.navigate([`/add`]);
   }
 
@@ -34,10 +35,10 @@ export class ListComponent implements OnInit {
         }
       });
   }
-  getById(id:string){
+  getById(id: string) {
     this.route.navigate([`/update/${id}`]);
   }
-  deletedata(id:string){
+  deletedata(id: string) {
     this.route.navigate([`/delete/${id}`]);
 
   }
