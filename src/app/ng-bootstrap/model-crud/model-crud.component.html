@@ -66,11 +66,11 @@
                 <div class="form-group">
                     <p class="fw-bold">Gender :</p>
                     <label>
-                        <input type="radio" name="gender" formControlName="gender" value="Male" />
+                        <input type="radio" name="gender" formControlName="gender" value="Male"/>
                         Male
                     </label>&nbsp;
                     <label>
-                        <input type="radio" name="gender" formControlName="gender" value="Female" />
+                        <input type="radio" name="gender" formControlName="gender" value="Female"/>
                         Female
                     </label>
                 </div><br>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label *ngFor="let item of userHobbies">
                             <input type="checkbox" (change)="hobbyselected($event)"
-                                [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item" />
+                                [checked]="selectedHobbies.includes(item)" name="hobbies" [value]="item"/>
                             {{ item }}&nbsp;&nbsp;
                         </label>
                     </div>
