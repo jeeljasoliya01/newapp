@@ -10,18 +10,14 @@
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">First Name:</label>
                         <input type="text" class="form-control" required name="fname" formControlName="firstname" />
-                        <label
-                            *ngIf="userForm.get('firstname') && userForm.get('firstname')?.touched && !userForm.get('firstname')?.value"
-                            class="text-danger">
+                        <label *ngIf="userForm.get('firstname') && userForm.get('firstname')?.touched && !userForm.get('firstname')?.value" class="text-danger">
                             First name is required
                         </label>
                     </div>
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">Last Name:</label>
                         <input type="text" class="form-control" required name="lname" formControlName="lastname">
-                        <label
-                            *ngIf="userForm.get('lastname') && userForm.get('lastname')?.touched && !userForm.get('lastname')?.value"
-                            class="text-danger">
+                        <label *ngIf="userForm.get('lastname') && userForm.get('lastname')?.touched && !userForm.get('lastname')?.value" class="text-danger">
                             last name is required
                         </label>
                     </div>
@@ -30,23 +26,17 @@
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">E-mail Address</label>
                         <input type="Email" class="form-control" required name="email" formControlName="email">
-                        <label
-                            *ngIf="userForm.get('email') && userForm.get('email')?.touched && !userForm.get('email')?.value"
-                            class="text-danger">
+                        <label *ngIf="userForm.get('email') && userForm.get('email')?.touched && !userForm.get('email')?.value" class="text-danger">
                             E-mail is required
                         </label>
-                        <label *ngIf="userForm.get('email') && userForm.get('email')?.errors?.['pattern']"
-                            class="text-danger">
+                        <label *ngIf="userForm.get('email') && userForm.get('email')?.errors?.['pattern']" class="text-danger">
                             E-mail is invalid
                         </label>
                     </div>
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">Password</label>
-                        <input type="Password" name="password" maxlength="8" formControlName="password"
-                            class="form-control">
-                        <label
-                            *ngIf="userForm.get('password') && userForm.get('password')?.touched && !userForm.get('password')?.value"
-                            class="text-danger">
+                        <input type="Password" name="password" maxlength="8" formControlName="password" class="form-control">
+                        <label *ngIf="userForm.get('password') && userForm.get('password')?.touched && !userForm.get('password')?.value" class="text-danger">
                             Password is required
                         </label>
                     </div>
@@ -55,9 +45,7 @@
                     <div class="form-group mb-3 col-6">
                         <label class="ms-2 fw-bold">Age :</label>
                         <input type="number" class="form-control" min="18" name="age" required formControlName="Age" />
-                        <label
-                            *ngIf="userForm.get('Age') && userForm.get('Age')?.touched && !userForm.get('Age')?.value"
-                            class="text-danger">
+                        <label *ngIf="userForm.get('Age') && userForm.get('Age')?.touched && !userForm.get('Age')?.value" class="text-danger">
                             Age is required
                         </label>
                         <label class="text-danger" *ngIf="userForm.get('Age')?.errors?.['min']">
@@ -67,9 +55,7 @@
                     <div class="form-group mb-3 col-6">
                         <label class="fw-bold">Phone</label>
                         <input type="tel" name="phone" required formControlName="phone" class="form-control" />
-                        <label
-                            *ngIf="userForm.get('phone') && userForm.get('phone')?.touched && !userForm.get('phone')?.value"
-                            class="text-danger">
+                        <label *ngIf="userForm.get('phone') && userForm.get('phone')?.touched && !userForm.get('phone')?.value" class="text-danger">
                             Phone is required
                         </label>
                         <label class="text-danger" *ngIf="userForm.get('phone')?.errors?.['pattern']">
@@ -100,12 +86,10 @@
                 </div>
                 <br>
                 <div class="form-group text-center mt-2">
-                    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Submit</button>
+                    <button type="submit" class="btn btn-outline-success" [disabled]="!userForm.valid">Submit</button>&nbsp;
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
                 </div>
             </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
         </div>
     </ng-template>
 
